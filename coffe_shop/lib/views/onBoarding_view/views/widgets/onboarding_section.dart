@@ -20,23 +20,31 @@ class OnBoardingSection extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          padding: index <= 1
+              ? const EdgeInsets.symmetric(horizontal: 16, vertical: 10)
+              : const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
           child: OnBoardingHeader(
+            index: index,
             pageController: pageController,
             controller: controller,
           ),
         ),
         const SizedBox(
-          height: 200,
+          height: 120,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
-          child: OnBoardingSectionBody(
-            index: index,
-            title: onBoardingItem.onBoardingList[index].title,
-            description: onBoardingItem.onBoardingList[index].description,
-            image: onBoardingItem.onBoardingList[index].image,
-          ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 50),
+              child: OnBoardingSectionBody(
+                index: index,
+                title: onBoardingItem.onBoardingList[index].title,
+                description: onBoardingItem.onBoardingList[index].description,
+                image: onBoardingItem.onBoardingList[index].image,
+              ),
+            ),
+          ],
         ),
       ],
     );

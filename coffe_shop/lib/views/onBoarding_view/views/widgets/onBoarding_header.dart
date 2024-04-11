@@ -6,9 +6,13 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingHeader extends StatelessWidget {
   const OnBoardingHeader(
-      {super.key, required this.pageController, required this.controller});
+      {super.key,
+      required this.pageController,
+      required this.controller,
+      required this.index});
   final PageController pageController;
   final OnBoardingItems controller;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,16 +29,20 @@ class OnBoardingHeader extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        TextButton(
-          onPressed: () {},
-          child: Text(
-            'Skip',
-            style: AppStyles.styleBold20.copyWith(
-              fontSize: 14,
-              color: Colors.white,
-            ),
-          ),
-        ),
+        index <= 1
+            ? TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/signin');
+                },
+                child: Text(
+                  'Skip',
+                  style: AppStyles.styleBold20.copyWith(
+                    fontSize: 14,
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            : const SizedBox(),
       ],
     );
   }

@@ -24,11 +24,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashView(),
         '/onBoarding': (context) => const OnBoardingView(),
-        '/register':(context) => const RegisterView(),
-        '/signIn':(context) => const SignInView(),
+        '/register': (context) => const RegisterView(),
+        '/signin': (context) => const SignInView(),
       },
       initialRoute: '/',
-      
     );
   }
 }
