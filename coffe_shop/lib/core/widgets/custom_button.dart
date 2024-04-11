@@ -1,7 +1,7 @@
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/utils/app_styles.dart';
+import '../utils/app_styles.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key});
