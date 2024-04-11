@@ -36,6 +36,7 @@ class OnBoardingSectionBody extends StatelessWidget {
                     height: MediaQuery.sizeOf(context).height * 0.07,
                     width: MediaQuery.sizeOf(context).width * 0.9,
                     title: 'Register',
+                    onPressed: () => Navigator.pushNamed(context, '/register'),
                   ),
                   const SizedBox(
                     height: 6,
@@ -44,6 +45,7 @@ class OnBoardingSectionBody extends StatelessWidget {
                     title: 'Sign Up',
                     height: MediaQuery.sizeOf(context).height * 0.07,
                     width: MediaQuery.sizeOf(context).width * 0.9,
+                    onPressed: () => Navigator.pushNamed(context, '/signIn'),
                   ),
                 ],
               )
