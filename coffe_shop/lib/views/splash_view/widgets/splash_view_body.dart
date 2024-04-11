@@ -34,7 +34,10 @@ class SplashViewBody extends StatelessWidget {
               height: 20,
             ),
           ),
-          const CustomButton(),
+           CustomButton(
+            title: 'Get Started',
+            onPressed: ()=>Navigator.pushNamed(context, '/onBoarding'),
+          ),
           const SizedBox(
             height: 60,
           ),

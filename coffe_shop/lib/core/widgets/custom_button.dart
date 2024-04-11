@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 import '../utils/app_styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
-
+  const CustomButton({super.key, this.onPressed, required this.title});
+final Function()? onPressed;
+final String title;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 53,
       width: 242,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
@@ -24,7 +25,7 @@ class CustomButton extends StatelessWidget {
           foregroundColor:
               MaterialStateProperty.all(AppColors.kBackgroundColor),
         ),
-        child: const Text('Get Started'),
+        child:  Text(title),
       ),
     );
   }

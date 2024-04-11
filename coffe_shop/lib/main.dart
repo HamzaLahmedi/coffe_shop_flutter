@@ -1,4 +1,5 @@
-import 'package:coffe_shop/views/splash_view.dart';
+import 'package:coffe_shop/views/onBoarding_view/views/onBoarding_view.dart';
+import 'package:coffe_shop/views/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +19,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashView(),
+      routes: {
+        '/': (context) => const SplashView(),
+        '/onBoarding': (context) => const OnBoardingView(),
+      },
+      initialRoute: '/',
+      
     );
   }
 }
