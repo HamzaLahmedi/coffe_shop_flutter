@@ -1,3 +1,4 @@
+import 'package:coffe_shop/views/onBoarding_view/views/widgets/onBoarding_body.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingView extends StatelessWidget {
@@ -5,10 +6,8 @@ class OnBoardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('OnBoarding'),
-      ),
+    return const Scaffold(
+      body: OnBoardingBody(),
     );
   }
 }

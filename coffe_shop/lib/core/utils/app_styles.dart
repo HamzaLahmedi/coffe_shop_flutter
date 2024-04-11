@@ -29,4 +29,5 @@ abstract class AppStyles {
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w700,
   );
+  
 }

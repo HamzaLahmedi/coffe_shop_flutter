@@ -34,9 +34,11 @@ class SplashViewBody extends StatelessWidget {
               height: 20,
             ),
           ),
-           CustomButton(
+          CustomButton(
+            height: MediaQuery.sizeOf(context).height * 0.07,
+            width: MediaQuery.sizeOf(context).width * 0.9,
             title: 'Get Started',
-            onPressed: ()=>Navigator.pushNamed(context, '/onBoarding'),
+            onPressed: () => Navigator.pushNamed(context, '/onBoarding'),
           ),
           const SizedBox(
             height: 60,
