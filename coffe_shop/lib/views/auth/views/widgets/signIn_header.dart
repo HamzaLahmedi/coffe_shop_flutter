@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignInHeader extends StatelessWidget {
-  const SignInHeader({super.key});
-
+  const SignInHeader({super.key, required this.title});
+final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,8 +15,8 @@ class SignInHeader extends StatelessWidget {
           child: Column(
             children: [
               SvgPicture.asset('assets/images/login_signup_logo.svg'),
-              const Text(
-                'Welcome to Login',
+               Text(
+                title,
                 style: AppStyles.styleSemiBold24,
               )
             ],

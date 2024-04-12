@@ -24,7 +24,7 @@ class TexFieldsSection extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: CustomTextFormField(
             text: 'Password',
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.text,
           ),
         ),
         const SizedBox(

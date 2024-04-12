@@ -43,7 +43,7 @@ class OnBoardingSectionBody extends StatelessWidget {
                     height: 6,
                   ),
                   CustomTransparentButton(
-                    title: 'Sign Up',
+                    title: 'Sign In',
                     height: MediaQuery.sizeOf(context).height * 0.07,
                     width: MediaQuery.sizeOf(context).width * 0.9,
                     onPressed: () => Navigator.pushNamed(context, '/signin'),

@@ -29,6 +29,12 @@ class CustomTextFormField extends StatelessWidget {
             color: Color(0xff16181C),
           ),
         ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(
+            color: Color(0xff16181C),
+          ),
+        ),
       ),
       obscureText: isObsecure ?? false,
       keyboardType: keyboardType,

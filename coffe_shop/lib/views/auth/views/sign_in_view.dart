@@ -11,14 +11,15 @@ class SignInView extends StatelessWidget {
     return const Scaffold(
       backgroundColor: Colors.transparent, // Make background transparent
       body: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-                'assets/images/Login_signup_bgg.png'), // Replace with your image path
+              'assets/images/Login_signup_bgg.png',
+            ), // Replace with your image path
             fit: BoxFit.cover, // Adjust fit as needed (cover, contain, etc.)
           ),
         ),
-        child:  Column(
+        child: Column(
           children: [
             SignInBody(),
           ],
