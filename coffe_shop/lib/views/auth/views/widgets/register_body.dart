@@ -35,6 +35,7 @@ class RegisterBody extends StatelessWidget {
             title: 'Register',
             height: MediaQuery.sizeOf(context).height * 0.08,
             width: MediaQuery.sizeOf(context).width,
+            onPressed: () => Navigator.pushNamed(context, '/home'),
           ),
           const SizedBox(
             height: 25,

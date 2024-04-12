@@ -1,8 +1,5 @@
-import 'package:coffe_shop/core/utils/app_styles.dart';
-import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/views/auth/views/widgets/bottom_text.dart';
-import 'package:coffe_shop/views/auth/views/widgets/custom_icon.dart';
 import 'package:coffe_shop/views/auth/views/widgets/custom_social_icons.dart';
 import 'package:coffe_shop/views/auth/views/widgets/divider_section.dart';
 import 'package:coffe_shop/views/auth/views/widgets/signIn_header.dart';
@@ -38,6 +35,7 @@ class SignInBody extends StatelessWidget {
               title: 'Sign in',
               height: MediaQuery.sizeOf(context).height * 0.08,
               width: MediaQuery.sizeOf(context).width,
+              onPressed: () => Navigator.pushNamed(context, '/home'),
             ),
           ),
           const SizedBox(
@@ -58,11 +56,11 @@ class SignInBody extends StatelessWidget {
               height: 20,
             ),
           ),
-           BottomText(
+          BottomText(
             text: 'Login',
             onPressed: () {
-            Navigator.pushNamed(context, '/register');
-          },
+              Navigator.pushNamed(context, '/register');
+            },
           ),
           const SizedBox(
             height: 50,
