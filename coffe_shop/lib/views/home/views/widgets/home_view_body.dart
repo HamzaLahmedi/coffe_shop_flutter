@@ -1,3 +1,4 @@
+import 'package:coffe_shop/views/home/views/widgets/custom_grid_view.dart';
 import 'package:coffe_shop/views/home/views/widgets/home_card.dart';
 import 'package:coffe_shop/views/home/views/widgets/home_header.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,17 +10,25 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        SizedBox(
-          height: 40,
-        ),
-        HomeHeader(),
-        SizedBox(
-          height: 20,
-        ),
-        HomeCard(),
-      ],
+    return const SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 40,
+          ),
+          HomeHeader(),
+          SizedBox(
+            height: 20,
+          ),
+          HomeCard(),
+          SizedBox(
+            height: 20,
+          ),
+          CustomGridView(
+            
+          )
+        ],
+      ),
     );
   }
 }
