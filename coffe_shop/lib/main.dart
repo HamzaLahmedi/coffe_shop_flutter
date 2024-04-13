@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         '/signin': (context) => const SignInView(),
         '/home': (context) => const HomeView(),
       },
-      initialRoute: '/',
+      initialRoute: '/home',
     );
   }
 }
