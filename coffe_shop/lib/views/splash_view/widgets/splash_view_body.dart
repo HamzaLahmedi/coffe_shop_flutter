@@ -27,7 +27,8 @@ class SplashViewBody extends StatelessWidget {
             ),
           ),
           Center(
-            child: SvgPicture.asset(Assets.imagesCoffeSplashLogo),
+            child: //SvgPicture.asset('assets/images/Liberica.svg'),
+                SvgPicture.asset(Assets.imagesCoffeSplashLogo),
           ),
           const Expanded(
             child: SizedBox(

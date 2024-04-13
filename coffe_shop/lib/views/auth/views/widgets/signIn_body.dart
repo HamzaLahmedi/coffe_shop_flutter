@@ -57,7 +57,7 @@ class SignInBody extends StatelessWidget {
             ),
           ),
           BottomText(
-            text: 'Login',
+            text: 'Register',
             onPressed: () {
               Navigator.pushNamed(context, '/register');
             },

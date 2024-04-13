@@ -1,6 +1,6 @@
 import 'package:coffe_shop/views/auth/views/resgister_view.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
-import 'package:coffe_shop/views/home/home_view.dart';
+import 'package:coffe_shop/views/home/views/home_view.dart';
 import 'package:coffe_shop/views/onBoarding_view/views/onBoarding_view.dart';
 import 'package:coffe_shop/views/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
