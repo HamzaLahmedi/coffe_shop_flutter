@@ -1,4 +1,6 @@
+import 'package:coffe_shop/views/home/views/widgets/home_card.dart';
 import 'package:coffe_shop/views/home/views/widgets/home_header.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,7 +14,11 @@ class HomeViewBody extends StatelessWidget {
         SizedBox(
           height: 40,
         ),
-        HomeHeader()
+        HomeHeader(),
+        SizedBox(
+          height: 20,
+        ),
+        HomeCard(),
       ],
     );
   }

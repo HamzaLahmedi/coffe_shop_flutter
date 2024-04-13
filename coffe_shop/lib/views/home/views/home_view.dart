@@ -31,6 +31,7 @@ class _HomeViewState extends State<HomeView> {
       backgroundColor: AppColors.kBackgroundColor,
       body: _pages[_currentIndex],
       bottomNavigationBar: ConvexAppBar(
+        height: 60,
         backgroundColor: AppColors.kPrimaryColor,
         //color: AppColors.kBackgroundColor,
         activeColor: AppColors.kBackgroundColor,
