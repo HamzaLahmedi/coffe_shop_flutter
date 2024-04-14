@@ -11,10 +11,11 @@ class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<HomeView> createState() => HomeViewState();
 }
 
 int _currentIndex = 0;
+
 
 final List<Widget> _pages = [
   const HomeViewBody(),
@@ -24,7 +25,8 @@ final List<Widget> _pages = [
   const ProfileView(),
 ];
 
-class _HomeViewState extends State<HomeView> {
+class HomeViewState extends State<HomeView> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

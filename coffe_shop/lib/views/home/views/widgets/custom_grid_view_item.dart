@@ -15,8 +15,9 @@ class CustomGridViewItem extends StatefulWidget {
 }
 
 class _CustomGridViewItemState extends State<CustomGridViewItem> {
-  @override
+  
   bool isClicked = true;
+    @override
 
   Widget build(BuildContext context) {
     final menuItem = MenuList.menulist[widget.index];
