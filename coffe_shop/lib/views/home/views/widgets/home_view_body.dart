@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+  const HomeViewBody({super.key, });
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return   SingleChildScrollView(
       child: Column(
         children: [
           SizedBox(
@@ -25,7 +25,7 @@ class HomeViewBody extends StatelessWidget {
             height: 20,
           ),
           CustomGridView(
-            
+          
           )
         ],
       ),

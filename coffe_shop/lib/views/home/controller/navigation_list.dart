@@ -57,6 +57,7 @@ class NavigationList {
           ),
           fit: BoxFit.none,
         ),
+        activeIcon: activeColor,
         //title: item.label,
       );
     }).toList(); // Ensure the list is of type List<TabItem<dynamic>>

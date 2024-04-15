@@ -4,29 +4,36 @@ import 'package:coffe_shop/views/home/controller/menu_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomGridViewItem extends StatefulWidget {
-  const CustomGridViewItem({
+class CustomLikedGridViewItem extends StatefulWidget {
+  const CustomLikedGridViewItem({
     super.key,
-    required this.index, required this.onLike,
+    required this.index, required this.onLike, required this.isLiked,
   });
   final int index;
-  final Function(int) onLike;
-  @override
-  State<CustomGridViewItem> createState() => _CustomGridViewItemState();
-}
+    final Function(int) onLike;
+    final bool isLiked;
 
-class _CustomGridViewItemState extends State<CustomGridViewItem> {
+  @override
+  State<CustomLikedGridViewItem> createState() => _CustomLikedGridViewItemState();
+}
+late bool isClicked;
+class _CustomLikedGridViewItemState extends State<CustomLikedGridViewItem> {
   
   bool isClicked = true;
-   void toggleLike() {
-    setState(() {
-      isClicked = !isClicked;
-    });
-    widget.onLike(widget.index);
-  }
-  
+   
     @override
+void initState() {
+        super.initState();
+        // Initialize isClicked state based on whether the item is liked or unliked
+        isClicked = widget.isLiked;
+    }
 
+    void toggleLike() {
+        setState(() {
+            isClicked = !isClicked;
+        });
+        widget.onLike(widget.index);
+    }
   Widget build(BuildContext context) {
     
     final menuItem = MenuList.menulist[widget.index];

@@ -11,21 +11,19 @@ class ProfileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        width: MediaQuery.sizeOf(context).width,
-        height: MediaQuery.sizeOf(context).height,
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ProfileHeader(),
-            Text(
-              'Shahzaib R.',
-              style: AppStyles.styleSemiBold24,
-            ),
-            CustomProfileListView()
-          ],
-        ),
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height,
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ProfileHeader(),
+          Text(
+            'Shahzaib R.',
+            style: AppStyles.styleSemiBold24,
+          ),
+          CustomProfileListView()
+        ],
       ),
     );
   }

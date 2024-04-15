@@ -14,6 +14,7 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.kBackgroundColor,
       appBar: customAppBar(
+        onPressed: () => Navigator.pop(context),
         title: 'Profile',
         imagePath: Assets.imagesNotifLogo,
       ),
