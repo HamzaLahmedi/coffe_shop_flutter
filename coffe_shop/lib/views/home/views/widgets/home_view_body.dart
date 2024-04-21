@@ -6,27 +6,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key, });
-
+  const HomeViewBody({
+    super.key,
+    required this.openDrawer,
+  });
+  final VoidCallback openDrawer;
   @override
   Widget build(BuildContext context) {
-    return   SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
-          HomeHeader(),
-          SizedBox(
+          HomeHeader(
+            openDrawer: openDrawer,
+          ),
+          const SizedBox(
             height: 20,
           ),
-          HomeCard(),
-          SizedBox(
+          const HomeCard(),
+          const SizedBox(
             height: 20,
           ),
-          CustomGridView(
-          
-          )
+          CustomGridView()
         ],
       ),
     );

@@ -7,28 +7,29 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class CustomGridViewItem extends StatefulWidget {
   const CustomGridViewItem({
     super.key,
-    required this.index, required this.onLike,
+    required this.index,
+    required this.onLike,// required this.onToggleLike,
   });
   final int index;
-  final Function(int) onLike;
+  final Function(int,bool) onLike;
+  //final Function(bool) onToggleLike;
   @override
   State<CustomGridViewItem> createState() => _CustomGridViewItemState();
 }
 
 class _CustomGridViewItemState extends State<CustomGridViewItem> {
-  
-  bool isClicked = true;
-   void toggleLike() {
+  bool isLiked = false;
+  void toggleLike() {
     setState(() {
-      isClicked = !isClicked;
+      isLiked = !isLiked;
+      widget.onLike(widget.index,isLiked);
+      //widget.onLike(widget.index);
+      print('liked $isLiked');
     });
-    widget.onLike(widget.index);
   }
-  
-    @override
 
+  @override
   Widget build(BuildContext context) {
-    
     final menuItem = MenuList.menulist[widget.index];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -49,14 +50,14 @@ class _CustomGridViewItemState extends State<CustomGridViewItem> {
                     alignment: Alignment.topRight,
                     child: GestureDetector(
                       onTap: toggleLike,
-                      child: isClicked
+                      child: isLiked
                           ? const Icon(
-                              FontAwesomeIcons.heart,
-                              color: Colors.white,
-                            )
-                          : const Icon(
                               FontAwesomeIcons.solidHeart,
                               color: Colors.red,
+                            )
+                          : const Icon(
+                              FontAwesomeIcons.heart,
+                              color: Colors.white,
                             ),
                     ),
                   ),

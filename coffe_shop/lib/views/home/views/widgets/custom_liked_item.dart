@@ -4,38 +4,30 @@ import 'package:coffe_shop/views/home/controller/menu_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomLikedGridViewItem extends StatefulWidget {
-  const CustomLikedGridViewItem({
+class CustomLikedItem extends StatefulWidget {
+  const CustomLikedItem({
     super.key,
-    required this.index, required this.onLike, required this.isLiked,
+    required this.index,
+    required this.onLike,
   });
   final int index;
-    final Function(int) onLike;
-    final bool isLiked;
+  final Function(int) onLike;
+  @override
+  State<CustomLikedItem> createState() => _CustomLikedItemState();
+}
+
+class _CustomLikedItemState extends State<CustomLikedItem> {
+  bool isLiked = true;
+
+  /* void toggleLike() {
+    setState(() {
+      isLiked = !isLiked;
+      widget.onLike(widget.index);
+    });
+  }*/
 
   @override
-  State<CustomLikedGridViewItem> createState() => _CustomLikedGridViewItemState();
-}
-late bool isClicked;
-class _CustomLikedGridViewItemState extends State<CustomLikedGridViewItem> {
-  
-  bool isClicked = true;
-   
-    @override
-void initState() {
-        super.initState();
-        // Initialize isClicked state based on whether the item is liked or unliked
-        isClicked = widget.isLiked;
-    }
-
-    void toggleLike() {
-        setState(() {
-            isClicked = !isClicked;
-        });
-        widget.onLike(widget.index);
-    }
   Widget build(BuildContext context) {
-    
     final menuItem = MenuList.menulist[widget.index];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -44,9 +36,9 @@ void initState() {
           child: Container(
             height: MediaQuery.sizeOf(context).height / 4,
             width: MediaQuery.sizeOf(context).height / 4.5,
-            decoration: BoxDecoration(
-              color: const Color(0xffCE9760),
-              borderRadius: BorderRadius.circular(20),
+            decoration: const BoxDecoration(
+              color: Color(0xffCE9760),
+              //borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
@@ -55,15 +47,15 @@ void initState() {
                   Align(
                     alignment: Alignment.topRight,
                     child: GestureDetector(
-                      onTap: toggleLike,
-                      child: isClicked
+                      onTap: () {},
+                      child: isLiked
                           ? const Icon(
-                              FontAwesomeIcons.heart,
-                              color: Colors.white,
-                            )
-                          : const Icon(
                               FontAwesomeIcons.solidHeart,
                               color: Colors.red,
+                            )
+                          : const Icon(
+                              FontAwesomeIcons.heart,
+                              color: Colors.white,
                             ),
                     ),
                   ),

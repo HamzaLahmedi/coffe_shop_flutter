@@ -1,12 +1,9 @@
-import 'package:coffe_shop/views/home/new_details_view.dart';
-import 'package:coffe_shop/views/home/new_favorites_view.dart';
-import 'package:coffe_shop/views/home/new_home_view.dart';
 import 'package:coffe_shop/views/auth/views/resgister_view.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
-import 'package:coffe_shop/views/home/new_profile_view.dart';
 import 'package:coffe_shop/views/home/views/home_view.dart';
 import 'package:coffe_shop/views/home/views/liked_view.dart';
 import 'package:coffe_shop/views/home/views/profile_view.dart';
+import 'package:coffe_shop/views/home/views/shop_view.dart';
 import 'package:coffe_shop/views/onBoarding_view/views/onBoarding_view.dart';
 import 'package:coffe_shop/views/splash_view/splash_view.dart';
 import 'package:device_preview/device_preview.dart';
@@ -36,10 +33,10 @@ class MyApp extends StatelessWidget {
         '/onBoarding': (context) => const OnBoardingView(),
         '/register': (context) => const RegisterView(),
         '/signin': (context) => const SignInView(),
-        '/home': (context) => const HomeView(),
-        '/liked': (context) =>  LikedView(),
+        '/home': (context) => HomeView(),
+        '/liked': (context) => const LikedView(),
         '/profile': (context) => const ProfileView(),
-        
+        '/shop': (context) => const ShopView(),
       },
       initialRoute: '/home',
     );

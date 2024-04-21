@@ -1,12 +1,13 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
-import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
-    super.key,
+    super.key, required this.openDrawer,
   });
+  final VoidCallback openDrawer;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,15 @@ class HomeHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
-          CircleAvatar(
+          IconButton(
+            icon: const Icon(
+              Icons.menu,
+              size: 30,
+              color: Colors.white,
+            ),
+            onPressed: openDrawer,
+          ),
+          /*CircleAvatar(
             radius: 30,
             // Set the background to the SVG image
             backgroundColor: AppColors.kBackgroundColor,
@@ -24,7 +33,7 @@ class HomeHeader extends StatelessWidget {
               // width: 30 * 2,
               //fit: BoxFit.contain,
             ),
-          ),
+          ),*/
           const SizedBox(
             width: 10,
           ),

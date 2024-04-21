@@ -6,17 +6,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomGridView extends StatelessWidget {
-     final Set<int> likedIndices = {};
-   CustomGridView({
+  final Set<int> likedIndices = {};
+  CustomGridView({
     super.key,
   });
- void handleLike(int index) {
-    if (likedIndices.contains(index)) {
-      likedIndices.remove(index);
-    } else {
-      likedIndices.add(index);
-    }
+  void handleLikeChanged(int index, bool isLiked) {
+  if (isLiked) {
+    likedIndices.add(index); // Add the index of the liked item
+    print('Liked item: ${MenuList.menulist[index]}');
+    print('Total liked items count: ${likedIndices.length}');
+  } else {
+    likedIndices.remove(index); // Remove the index if unliked
+    print('Unliked item: ${MenuList.menulist[index]}');
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +37,13 @@ class CustomGridView extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/liked', arguments: likedIndices.toList());
+              Navigator.pushNamed(context, '/liked',
+                  arguments: likedIndices.toList());
             },
             child: CustomGridViewItem(
               index: index,
-              onLike: handleLike,
+              onLike: handleLikeChanged,
+              
             ),
           );
         },
