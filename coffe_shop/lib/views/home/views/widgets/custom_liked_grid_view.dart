@@ -11,6 +11,10 @@ class CustomLikedGridView extends StatelessWidget {
     final List<int> likedItems =
         ModalRoute.of(context)?.settings.arguments as List<int>? ?? [];
     print(likedItems);
+    void removeItem(int index) {
+      likedItems.remove(index);
+    }
+
     return GridView.builder(
         itemCount: likedItems.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -22,10 +26,8 @@ class CustomLikedGridView extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return CustomLikedItem(
-            index: index,
-            onLike: (index) {
-              likedItems.remove(index);
-            },
+            index: likedItems[index],
+            onLike: removeItem,
           );
         });
   }

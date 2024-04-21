@@ -12,6 +12,7 @@ class CustomLikedItem extends StatefulWidget {
   });
   final int index;
   final Function(int) onLike;
+
   @override
   State<CustomLikedItem> createState() => _CustomLikedItemState();
 }
@@ -29,75 +30,83 @@ class _CustomLikedItemState extends State<CustomLikedItem> {
   @override
   Widget build(BuildContext context) {
     final menuItem = MenuList.menulist[widget.index];
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Expanded(
-          child: Container(
-            height: MediaQuery.sizeOf(context).height / 4,
-            width: MediaQuery.sizeOf(context).height / 4.5,
-            decoration: const BoxDecoration(
-              color: Color(0xffCE9760),
-              //borderRadius: BorderRadius.circular(20),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: isLiked
-                          ? const Icon(
-                              FontAwesomeIcons.solidHeart,
-                              color: Colors.red,
-                            )
-                          : const Icon(
-                              FontAwesomeIcons.heart,
-                              color: Colors.white,
+    return isLiked
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Container(
+                  height: MediaQuery.sizeOf(context).height / 4,
+                  width: MediaQuery.sizeOf(context).height / 4.5,
+                  decoration: const BoxDecoration(
+                    color: Color(0xffCE9760),
+                    //borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isLiked = !isLiked;
+                                  print(isLiked);
+                                  widget.onLike(widget.index);
+                                });
+                              },
+                              child: isLiked
+                                  ? const Icon(
+                                      FontAwesomeIcons.solidHeart,
+                                      color: Colors.red,
+                                    )
+                                  : const Icon(
+                                      FontAwesomeIcons.heart,
+                                      color: Colors.white,
+                                    )),
+                        ),
+                        Image.asset(
+                          menuItem.image,
+                          height: MediaQuery.sizeOf(context).height / 8,
+                          width: MediaQuery.sizeOf(context).height / 8,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              menuItem.coffeName,
+                              style: AppStyles.styleSemiBold24.copyWith(
+                                fontSize: 18,
+                              ),
                             ),
+                            Text(
+                              menuItem.price,
+                              style: AppStyles.styleSemiBold24.copyWith(
+                                fontSize: 16,
+                                color: AppColors.kDescriptionColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          menuItem.description,
+                          style: AppStyles.styleRegular14.copyWith(
+                            fontSize: 9,
+                            color: AppColors.kDescriptionColor,
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  Image.asset(
-                    menuItem.image,
-                    height: MediaQuery.sizeOf(context).height / 8,
-                    width: MediaQuery.sizeOf(context).height / 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        menuItem.coffeName,
-                        style: AppStyles.styleSemiBold24.copyWith(
-                          fontSize: 18,
-                        ),
-                      ),
-                      Text(
-                        menuItem.price,
-                        style: AppStyles.styleSemiBold24.copyWith(
-                          fontSize: 16,
-                          color: AppColors.kDescriptionColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    menuItem.description,
-                    style: AppStyles.styleRegular14.copyWith(
-                      fontSize: 9,
-                      color: AppColors.kDescriptionColor,
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
-      ],
-    );
+            ],
+          )
+        : SizedBox();
   }
 }
