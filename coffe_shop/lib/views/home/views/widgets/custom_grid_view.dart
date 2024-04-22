@@ -11,16 +11,15 @@ class CustomGridView extends StatelessWidget {
     super.key,
   });
   void handleLikeChanged(int index, bool isLiked) {
-  if (isLiked) {
-    likedIndices.add(index); // Add the index of the liked item
-    print('Liked item: ${MenuList.menulist[index]}');
-    print('Total liked items count: ${likedIndices.length}');
-  } else {
-    likedIndices.remove(index); // Remove the index if unliked
-    print('Unliked item: ${MenuList.menulist[index]}');
+    if (isLiked) {
+      likedIndices.add(index); // Add the index of the liked item
+      print('Liked item: ${MenuList.menulist[index]}');
+      print('Total liked items count: ${likedIndices.length}');
+    } else {
+      likedIndices.remove(index); // Remove the index if unliked
+      print('Unliked item: ${MenuList.menulist[index]}');
+    }
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,6 @@ class CustomGridView extends StatelessWidget {
             child: CustomGridViewItem(
               index: index,
               onLike: handleLikeChanged,
-              
             ),
           );
         },
