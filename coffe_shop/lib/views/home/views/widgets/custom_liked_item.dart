@@ -8,10 +8,10 @@ class CustomLikedItem extends StatefulWidget {
   const CustomLikedItem({
     super.key,
     required this.index,
-    required this.onLike,
+   // required this.onLike,
   });
   final int index;
-  final Function(int) onLike;
+  //final Function(int) onLike;
 
   @override
   State<CustomLikedItem> createState() => _CustomLikedItemState();
@@ -19,7 +19,7 @@ class CustomLikedItem extends StatefulWidget {
 
 class _CustomLikedItemState extends State<CustomLikedItem> {
   bool isLiked = true;
-
+//this without provider
   /* void toggleLike() {
     setState(() {
       isLiked = !isLiked;

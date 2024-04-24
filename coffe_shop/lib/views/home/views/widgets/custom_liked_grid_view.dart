@@ -10,6 +10,7 @@ class CustomLikedGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //this without provider
     /*final List<int> likedItems =
         ModalRoute.of(context)?.settings.arguments as List<int>? ?? [];
     print(likedItems);
@@ -30,9 +31,10 @@ class CustomLikedGridView extends StatelessWidget {
         itemBuilder: (context, index) {
           return CustomLikedItem(
             index: likedItems[index],
-            onLike: (index) {
-              likedItemsProvider.removeLikedItem(index);
-            },
+            //this without provider
+            /*onLike: (index) {
+             likedItemsProvider.removeLikedItem(index);
+            },*/
           );
         });
   }

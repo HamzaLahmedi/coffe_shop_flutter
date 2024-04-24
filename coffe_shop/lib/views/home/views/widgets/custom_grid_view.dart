@@ -12,6 +12,7 @@ class CustomGridView extends StatelessWidget {
  const CustomGridView({
     super.key,
   });
+  //this without provider
  /* void handleLikeChanged(int index, bool isLiked) {
     if (isLiked) {
       likedIndices.add(index); // Add the index of the liked item
