@@ -1,3 +1,4 @@
+import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:coffe_shop/views/auth/views/resgister_view.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
@@ -21,8 +22,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ShoppingCart(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ShoppingCart(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => LikedItems(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,

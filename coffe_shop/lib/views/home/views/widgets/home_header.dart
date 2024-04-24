@@ -1,5 +1,6 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/core/widgets/custom_shopping_icon.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,8 +11,12 @@ class HomeHeader extends StatelessWidget {
   const HomeHeader({
     super.key,
     required this.openDrawer,
+    required this.title,
+    this.subtitle,
   });
   final VoidCallback openDrawer;
+  final String title;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +52,14 @@ class HomeHeader extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Shahzaib',
+                      title,
                       style: AppStyles.styleSemiBold24.copyWith(
                         fontSize: 22,
                       ),
                     ),
-                    const Text(
-                      'Good Morning!',
-                      style: TextStyle(
+                    Text(
+                      subtitle ?? '',
+                      style: const TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 18,
                         color: Color(0xffE3E3E3),
@@ -63,30 +68,8 @@ class HomeHeader extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                Stack(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.kPrimaryColor,
-                      ),
-                      child: Text(
-                        '${shoppingCartInstance.selectedProduct.length}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          Navigator.popAndPushNamed(context, '/shop');
-                        },
-                        icon: const Icon(
-                          Icons.shopping_cart_outlined,
-                          color: Colors.white,
-                        )),
-                  ],
+                CustomShoppingIcon(
+                  totalSelectedProducts: shoppingCartInstance.selectedProduct.length
                 ),
                 Text(
                   '\$ ${shoppingCartInstance.price}',
@@ -114,3 +97,4 @@ class HomeHeader extends StatelessWidget {
         ));
   }
 }
+

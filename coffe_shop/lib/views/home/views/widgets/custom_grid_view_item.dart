@@ -1,5 +1,6 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:coffe_shop/views/home/controller/menu_list.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class CustomGridViewItem extends StatefulWidget {
     required this.onLike, // required this.onToggleLike,
   });
   final int index;
-  final Function(int, bool) onLike;
+  final bool onLike;
   //final Function(bool) onToggleLike;
   @override
   State<CustomGridViewItem> createState() => _CustomGridViewItemState();
@@ -24,7 +25,8 @@ class _CustomGridViewItemState extends State<CustomGridViewItem> {
   void toggleLike() {
     setState(() {
       isLiked = !isLiked;
-      widget.onLike(widget.index, isLiked);
+
+      //widget.onLike(widget.index, isLiked);
       //widget.onLike(widget.index);
       print('liked $isLiked');
     });
@@ -33,8 +35,10 @@ class _CustomGridViewItemState extends State<CustomGridViewItem> {
   @override
   Widget build(BuildContext context) {
     final menuItem = MenuList.menulist[widget.index];
+    final likedItemsProvider = Provider.of<LikedItems>(context);
+    final liked = likedItemsProvider.likedItems.contains(widget.index);
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      //mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
           child: Container(
@@ -47,11 +51,21 @@ class _CustomGridViewItemState extends State<CustomGridViewItem> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Align(
                     alignment: Alignment.topRight,
                     child: GestureDetector(
-                      onTap: toggleLike,
+                      onTap: () {
+                        setState(() {
+                          isLiked = !isLiked;
+                          if (liked) {
+                            likedItemsProvider.removeLikedItem(widget.index);
+                          } else {
+                            likedItemsProvider.addLikedItem(widget.index);
+                          }
+                        });
+                      },
                       child: isLiked
                           ? const Icon(
                               FontAwesomeIcons.solidHeart,
@@ -65,8 +79,8 @@ class _CustomGridViewItemState extends State<CustomGridViewItem> {
                   ),
                   Image.asset(
                     menuItem.image,
-                    height: MediaQuery.sizeOf(context).height / 8,
-                    width: MediaQuery.sizeOf(context).height / 8,
+                    height: MediaQuery.sizeOf(context).height / 9,
+                    width: MediaQuery.sizeOf(context).height / 9,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,40 +103,35 @@ class _CustomGridViewItemState extends State<CustomGridViewItem> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Expanded(
-                    child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            menuItem.description,
-                            style: AppStyles.styleRegular14.copyWith(
-                              fontSize: 9,
-                              color: AppColors.kDescriptionColor,
-                            ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          menuItem.description,
+                          style: AppStyles.styleRegular14.copyWith(
+                            fontSize: 10,
+                            color: AppColors.kDescriptionColor,
                           ),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(child: Consumer<ShoppingCart>(
-                          builder: (context, cart, child) {
-                            return GestureDetector(
-                              onTap: () {
-                                cart.add(menuItem);
-                                print(cart.selectedProduct.length);
-                                print('1');
-                              },
-                              child: Icon(
-                                menuItem.addIcon,
-                                color: AppColors.kTextColor,
-                                size: 22,
-                              ),
-                            );
-                          },
-                        )),
-                      ],
-                    ),
+                      ),
+                      Consumer<ShoppingCart>(
+                        builder: (context, cart, child) {
+                          return GestureDetector(
+                            onTap: () {
+                              cart.add(menuItem);
+                              print(cart.selectedProduct.length);
+                              print('1');
+                            },
+                            child: Icon(
+                              menuItem.addIcon,
+                              color: AppColors.kTextColor,
+                              size: 22,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   )
                 ],
               ),

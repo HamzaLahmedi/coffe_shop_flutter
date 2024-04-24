@@ -1,16 +1,18 @@
+import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/views/home/controller/menu_list.dart';
 import 'package:coffe_shop/views/home/views/home_view.dart';
 import 'package:coffe_shop/views/home/views/liked_view.dart';
 import 'package:coffe_shop/views/home/views/widgets/custom_grid_view_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomGridView extends StatelessWidget {
-  final Set<int> likedIndices = {};
-  CustomGridView({
+ // final Set<int> likedIndices = {};
+ const CustomGridView({
     super.key,
   });
-  void handleLikeChanged(int index, bool isLiked) {
+ /* void handleLikeChanged(int index, bool isLiked) {
     if (isLiked) {
       likedIndices.add(index); // Add the index of the liked item
       print('Liked item: ${MenuList.menulist[index]}');
@@ -19,7 +21,7 @@ class CustomGridView extends StatelessWidget {
       likedIndices.remove(index); // Remove the index if unliked
       print('Unliked item: ${MenuList.menulist[index]}');
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,11 @@ class CustomGridView extends StatelessWidget {
           mainAxisSpacing: 10,
         ),
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/liked',
-                  arguments: likedIndices.toList());
-            },
-            child: CustomGridViewItem(
-              index: index,
-              onLike: handleLikeChanged,
-            ),
+          final likedItemsProvider=Provider.of<LikedItems>(context);
+          final isLiked = likedItemsProvider.likedItems.contains(index);
+          return CustomGridViewItem(
+            index: index,
+            onLike: isLiked,
           );
         },
         padding: EdgeInsets.zero,

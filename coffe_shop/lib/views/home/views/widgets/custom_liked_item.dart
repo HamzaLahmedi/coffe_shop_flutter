@@ -54,7 +54,8 @@ class _CustomLikedItemState extends State<CustomLikedItem> {
                                 setState(() {
                                   isLiked = !isLiked;
                                   print(isLiked);
-                                  widget.onLike(widget.index);
+                                  //widget.onLike(widget.index);
+                                  
                                 });
                               },
                               child: isLiked

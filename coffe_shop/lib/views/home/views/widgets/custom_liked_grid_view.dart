@@ -1,5 +1,7 @@
+import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/views/home/views/widgets/custom_liked_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomLikedGridView extends StatelessWidget {
   const CustomLikedGridView({
@@ -8,13 +10,14 @@ class CustomLikedGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<int> likedItems =
+    /*final List<int> likedItems =
         ModalRoute.of(context)?.settings.arguments as List<int>? ?? [];
     print(likedItems);
     void removeItem(int index) {
       likedItems.remove(index);
-    }
-
+    }*/
+    final likedItemsProvider = Provider.of<LikedItems>(context);
+    final List<int> likedItems = likedItemsProvider.likedItems.toList();
     return GridView.builder(
         itemCount: likedItems.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -27,7 +30,9 @@ class CustomLikedGridView extends StatelessWidget {
         itemBuilder: (context, index) {
           return CustomLikedItem(
             index: likedItems[index],
-            onLike: removeItem,
+            onLike: (index) {
+              likedItemsProvider.removeLikedItem(index);
+            },
           );
         });
   }

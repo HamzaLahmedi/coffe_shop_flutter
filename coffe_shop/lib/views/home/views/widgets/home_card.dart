@@ -34,12 +34,15 @@ class HomeCard extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                const Text(
-                  'Lorem ipsum dolor sit amet consectetur.\nVestibulum eget blandit mattis ',
-                  style: TextStyle(
-                    fontSize: 9,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
+                const Padding(
+                  padding: EdgeInsets.only(left: 22),
+                  child: Text(
+                    'Lorem ipsum dolor sit amet consectetur.\nVestibulum eget blandit mattis ',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
