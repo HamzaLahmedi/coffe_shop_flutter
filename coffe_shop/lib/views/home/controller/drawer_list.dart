@@ -5,7 +5,8 @@ class DrawerList {
   static List<DrawerModel> drawerList = [
     const DrawerModel(
         title: 'Home', iconPath: Assets.imagesHome, route: '/home'),
-     const DrawerModel(title: 'Details', iconPath: Assets.imagesShop,route:'/shop'),
+    const DrawerModel(
+        title: 'Shop', iconPath: Assets.imagesShop, route: '/shop'),
     const DrawerModel(
         title: 'Favorites', iconPath: Assets.imagesLiked1, route: '/liked'),
     const DrawerModel(

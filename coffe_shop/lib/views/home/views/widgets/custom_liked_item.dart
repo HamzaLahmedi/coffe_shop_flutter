@@ -53,7 +53,7 @@ class _CustomLikedItemState extends State<CustomLikedItem> {
                               onTap: () {
                                 setState(() {
                                   isLiked = !isLiked;
-                                  print(isLiked);
+                                  //print(isLiked);
                                   //widget.onLike(widget.index);
                                   
                                 });
@@ -108,6 +108,6 @@ class _CustomLikedItemState extends State<CustomLikedItem> {
               ),
             ],
           )
-        : SizedBox();
+        :const SizedBox();
   }
 }

@@ -28,7 +28,7 @@ class _CustomGridViewItemState extends State<CustomGridViewItem> {
 
       //widget.onLike(widget.index, isLiked);
       //widget.onLike(widget.index);
-      print('liked $isLiked');
+     // print('liked $isLiked');
     });
   }
 
@@ -120,8 +120,8 @@ class _CustomGridViewItemState extends State<CustomGridViewItem> {
                           return GestureDetector(
                             onTap: () {
                               cart.add(menuItem);
-                              print(cart.selectedProduct.length);
-                              print('1');
+                             // print(cart.selectedProduct.length);
+                             // print('1');
                             },
                             child: Icon(
                               menuItem.addIcon,

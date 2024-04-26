@@ -2,6 +2,7 @@ import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/widgets/custom_shopping_icon.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
+import 'package:coffe_shop/views/home/views/widgets/shop_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,48 +12,10 @@ class ShopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: shopAppBar(context),
-        backgroundColor: AppColors.kBackgroundColor,
-        body: Consumer<ShoppingCart>(
-          builder: (context, cart, child) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'My Order',
-                  style: AppStyles.styleSemiBold24,
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'You have ${cart.selectedProduct.length} ',
-                    style: AppStyles.styleSemiBold24.copyWith(
-                      fontSize: 11,
-                      // Set the default color for the text
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'items',
-                        style: AppStyles.styleSemiBold24.copyWith(
-                          fontSize: 11,
-                          color: AppColors.kPrimaryColor,
-                          // Set the default color for the text
-                        ),
-                      ),
-                      TextSpan(
-                        text: ' in your cart',
-                        style: AppStyles.styleSemiBold24.copyWith(
-                          fontSize: 11,
-
-                          // Set the default color for the text
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            );
-          },
-        ));
+      appBar: shopAppBar(context),
+      backgroundColor: AppColors.kBackgroundColor,
+      body: const ShopViewBody(),
+    );
   }
 
   AppBar shopAppBar(BuildContext context) {

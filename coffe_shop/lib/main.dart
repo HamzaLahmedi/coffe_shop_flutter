@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => const ProfileView(),
           '/shop': (context) => const ShopView(),
         },
-        initialRoute: '/',
+        initialRoute: '/home',
       ),
     );
   }
