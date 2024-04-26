@@ -24,4 +24,10 @@ class ShoppingCart with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void delete(MenuModel product) {
+    selectedProduct.remove(product);
+    price = price - double.parse(product.price);
+    notifyListeners();
+  }
 }

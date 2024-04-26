@@ -15,7 +15,8 @@ class ShopListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final length = Provider.of<ShoppingCart>(context).selectedProduct.length;
     final selectedProduct = Provider.of<ShoppingCart>(context).selectedProduct;
-    return ListView.builder(
+    return Consumer<ShoppingCart>(builder: (context, cart, child) {
+      return ListView.builder(
         itemCount: length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -27,7 +28,9 @@ class ShopListView extends StatelessWidget {
                 motion: const ScrollMotion(),
                 children: [
                   SlidableAction(
-                    onPressed: (context) {},
+                    onPressed: (context) {
+                      cart.delete(selectedProduct[index]);
+                    },
                     backgroundColor: AppColors.kBackgroundColor,
                     icon: FontAwesomeIcons.trashCan,
                   )
@@ -39,5 +42,6 @@ class ShopListView extends StatelessWidget {
             ),
           );
         });
+    });
   }
 }
