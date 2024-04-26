@@ -1,8 +1,10 @@
 import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:coffe_shop/views/home/views/widgets/shop_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class ShopListView extends StatelessWidget {
   const ShopListView({
@@ -11,8 +13,10 @@ class ShopListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final length = Provider.of<ShoppingCart>(context).selectedProduct.length;
+    final selectedProduct = Provider.of<ShoppingCart>(context).selectedProduct;
     return ListView.builder(
-        itemCount: 13,
+        itemCount: length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
@@ -29,7 +33,9 @@ class ShopListView extends StatelessWidget {
                   )
                 ],
               ),
-              child: const ShopItem(),
+              child: ShopItem(
+                menuModel: selectedProduct[index],
+              ),
             ),
           );
         });
