@@ -33,6 +33,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   curved_labeled_navigation_bar: ^2.0.2
   device_preview: ^1.1.0
+  firebase_auth: ^4.19.4
+  firebase_core: ^2.30.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5

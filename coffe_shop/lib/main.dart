@@ -1,3 +1,4 @@
+import 'package:coffe_shop/firebase_options.dart';
 import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:coffe_shop/views/auth/views/resgister_view.dart';
@@ -9,10 +10,16 @@ import 'package:coffe_shop/views/home/views/shop_view.dart';
 import 'package:coffe_shop/views/onBoarding_view/views/onBoarding_view.dart';
 import 'package:coffe_shop/views/splash_view/splash_view.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(DevicePreview(enabled: false, builder: (context) => const MyApp()));
 }
 
