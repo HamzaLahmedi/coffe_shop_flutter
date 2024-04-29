@@ -4,25 +4,37 @@ import 'package:flutter/material.dart';
 class RegisterFieldsSection extends StatelessWidget {
   const RegisterFieldsSection({
     super.key,
+    this.emailController,
+    this.passwordController,
   });
+  final TextEditingController? emailController;
+  final TextEditingController? passwordController;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        CustomTextFormField(text: 'Full Name'),
-        SizedBox(
+        // const CustomTextFormField(text: 'Full Name'),
+        const SizedBox(
           height: 8,
         ),
-        CustomTextFormField(text: 'E-mail Addresse'),
-        SizedBox(
+        CustomTextFormField(
+          text: 'E-mail Addresse',
+          controller: emailController,
+          keyboardType: TextInputType.emailAddress,
+        ),
+        const SizedBox(
           height: 8,
         ),
-        CustomTextFormField(text: 'Password'),
-        SizedBox(
+        CustomTextFormField(
+          text: 'Password',
+          controller: passwordController,
+          isObsecure: true,
+        ),
+        const SizedBox(
           height: 8,
         ),
-        CustomTextFormField(text: 'Confirm Password'),
+        // const CustomTextFormField(text: 'Confirm Password'),
       ],
     );
   }

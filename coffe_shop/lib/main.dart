@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
         //locale: DevicePreview.locale(context),
         //builder: DevicePreview.appBuilder,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(
+              brightness: Brightness.dark, seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
         routes: {
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => const ProfileView(),
           '/shop': (context) => const ShopView(),
         },
-        initialRoute: '/',
+        initialRoute: '/register',
       ),
     );
   }

@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
-      {super.key, required this.text, this.isObsecure, this.keyboardType});
+      {super.key,
+      required this.text,
+      this.isObsecure,
+      this.keyboardType,
+      this.controller});
   final String text;
   final bool? isObsecure;
   final TextInputType? keyboardType;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -25,9 +31,8 @@ class CustomTextFormField extends StatelessWidget {
         filled: true,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: Color(0xff16181C),
-          ),
+          borderSide: const BorderSide(color: Colors.white //Color(0xff16181C),
+              ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
