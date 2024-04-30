@@ -23,9 +23,9 @@ class ProfileList {
       title: 'Invite Friend',
       iconPath: Assets.imagesInviteFreindIcon,
     ),
-    ProfileModel(
+    /* ProfileModel(
       title: 'Logout',
       iconPath: Assets.imagesLogoutIcon,
-    ),
+    ),*/
   ];
 }

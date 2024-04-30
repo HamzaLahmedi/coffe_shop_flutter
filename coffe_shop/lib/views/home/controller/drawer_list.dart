@@ -13,5 +13,6 @@ class DrawerList {
         title: 'Profile',
         iconPath: 'assets/images/user.svg',
         route: '/profile'),
+        
   ];
 }

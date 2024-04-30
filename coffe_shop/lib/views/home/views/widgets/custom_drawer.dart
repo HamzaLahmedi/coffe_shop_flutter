@@ -1,7 +1,9 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/views/home/views/widgets/cstom_drawer_list_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -37,7 +39,31 @@ class CustomDrawer extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          const CustomDrawerListView()
+          CustomDrawerListView(),
+          const Expanded(
+            child: SizedBox(
+              height: 60,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 26),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.kPrimaryColor,
+                foregroundColor: AppColors.kTextColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              child: const Text('sign out'),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
         ],
       ),
     );

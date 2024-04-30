@@ -1,5 +1,6 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/onBoarding_view/controller/onBoarding_list.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -32,7 +33,11 @@ class OnBoardingHeader extends StatelessWidget {
         index <= 1
             ? TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/signin');
+                  // Navigator.pushNamed(context, '/register');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInView()));
                 },
                 child: Text(
                   'Skip',

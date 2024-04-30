@@ -1,15 +1,11 @@
+import 'package:coffe_shop/core/utils/snackbar.dart';
 import 'package:coffe_shop/firebase_options.dart';
 import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
-import 'package:coffe_shop/views/auth/views/resgister_view.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/home_view.dart';
-import 'package:coffe_shop/views/home/views/liked_view.dart';
-import 'package:coffe_shop/views/home/views/profile_view.dart';
-import 'package:coffe_shop/views/home/views/shop_view.dart';
-import 'package:coffe_shop/views/onBoarding_view/views/onBoarding_view.dart';
-import 'package:coffe_shop/views/splash_view/splash_view.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +44,24 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.dark, seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        routes: {
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                  child: CircularProgressIndicator(
+                color: Colors.white,
+              ));
+            } else if (snapshot.hasError) {
+              return showSnackBar(context, "Something went wrong");
+            } else if (snapshot.hasData) {
+              return HomeView();
+            } else {
+              return const SignInView();
+            }
+          },
+        ),
+        /*routes: {
           '/': (context) => const SplashView(),
           '/onBoarding': (context) => const OnBoardingView(),
           '/register': (context) => const RegisterView(),
@@ -58,7 +71,7 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => const ProfileView(),
           '/shop': (context) => const ShopView(),
         },
-        initialRoute: '/register',
+        initialRoute: '/home',*/
       ),
     );
   }

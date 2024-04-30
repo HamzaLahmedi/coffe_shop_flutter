@@ -1,11 +1,13 @@
 import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/views/home/views/shop_view.dart';
 import 'package:flutter/material.dart';
 
 class CustomShoppingIcon extends StatelessWidget {
   const CustomShoppingIcon({
-    super.key, required this.totalSelectedProducts,
+    super.key,
+    required this.totalSelectedProducts,
   });
-final int totalSelectedProducts ;
+  final int totalSelectedProducts;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -25,7 +27,9 @@ final int totalSelectedProducts ;
         ),
         IconButton(
             onPressed: () {
-              Navigator.popAndPushNamed(context, '/shop');
+              // Navigator.pushNamed(context, '/register');
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ShopView()));
             },
             icon: const Icon(
               Icons.shopping_cart_outlined,

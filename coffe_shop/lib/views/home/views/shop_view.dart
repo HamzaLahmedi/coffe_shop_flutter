@@ -36,7 +36,8 @@ class ShopView extends StatelessWidget {
           color: AppColors.kPrimaryColor,
         ),
         onPressed: () {
-          Navigator.pushNamed(context, '/home');
+          //Navigator.pushNamed(context, '/home');
+          Navigator.pop(context);
         },
       ),
       actions: [

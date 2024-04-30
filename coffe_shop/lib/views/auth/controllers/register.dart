@@ -1,5 +1,6 @@
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/utils/snackbar.dart';
+import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,8 @@ class RegisterController {
         email: email,
         password: password,
       );
-      Navigator.pushNamed(context, '/home');
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const SignInView()));
       print(credential);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

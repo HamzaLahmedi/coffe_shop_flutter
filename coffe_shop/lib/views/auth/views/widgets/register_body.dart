@@ -1,6 +1,7 @@
 import 'package:coffe_shop/core/utils/snackbar.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/views/auth/controllers/register.dart';
+import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/auth/views/widgets/bottom_text.dart';
 import 'package:coffe_shop/views/auth/views/widgets/custom_social_icons.dart';
 import 'package:coffe_shop/views/auth/views/widgets/divider_section.dart';
@@ -78,7 +79,11 @@ class RegisterBody extends StatelessWidget {
               BottomText(
                 text: 'Login',
                 onPressed: () {
-                  Navigator.pushNamed(context, '/signin');
+                  // Navigator.pushNamed(context, '/register');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInView()));
                 },
               ),
               const SizedBox(

@@ -1,5 +1,6 @@
 import 'package:coffe_shop/views/home/controller/profile_list.dart';
 import 'package:coffe_shop/views/home/views/widgets/custom_profile_list_view_item.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CustomProfileListView extends StatelessWidget {
