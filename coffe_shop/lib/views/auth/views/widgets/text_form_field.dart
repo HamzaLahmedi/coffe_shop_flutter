@@ -6,15 +6,17 @@ class CustomTextFormField extends StatelessWidget {
       required this.text,
       this.isObsecure,
       this.keyboardType,
-      this.controller, this.validator});
+      this.controller, this.validator, this.suffixIcon});
   final String text;
   final bool? isObsecure;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
   final String? Function(String?)?  validator;
+  final IconButton? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
       validator:validator ,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: controller,
@@ -30,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
             fontWeight: FontWeight.w400,
           ),
         ),
+        suffixIcon: suffixIcon,
         fillColor: const Color(0xff16181C),
         filled: true,
         focusedBorder: OutlineInputBorder(
