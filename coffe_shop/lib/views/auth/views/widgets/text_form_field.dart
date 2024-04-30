@@ -6,14 +6,17 @@ class CustomTextFormField extends StatelessWidget {
       required this.text,
       this.isObsecure,
       this.keyboardType,
-      this.controller});
+      this.controller, this.validator});
   final String text;
   final bool? isObsecure;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
+  final String? Function(String?)?  validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator:validator ,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -42,6 +45,7 @@ class CustomTextFormField extends StatelessWidget {
         ),
       ),
       obscureText: isObsecure ?? false,
+      
       keyboardType: keyboardType,
     );
   }

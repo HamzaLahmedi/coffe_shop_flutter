@@ -1,3 +1,4 @@
+import 'package:coffe_shop/core/utils/snackbar.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/views/auth/controllers/register.dart';
 import 'package:coffe_shop/views/auth/views/widgets/bottom_text.dart';
@@ -5,6 +6,7 @@ import 'package:coffe_shop/views/auth/views/widgets/custom_social_icons.dart';
 import 'package:coffe_shop/views/auth/views/widgets/divider_section.dart';
 import 'package:coffe_shop/views/auth/views/widgets/register_fields_section.dart';
 import 'package:coffe_shop/views/auth/views/widgets/signIn_header.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -15,6 +17,7 @@ class RegisterBody extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final RegisterController registerController = RegisterController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -34,9 +37,12 @@ class RegisterBody extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              RegisterFieldsSection(
-                emailController: emailController,
-                passwordController: passwordController,
+              Form(
+                key: formKey,
+                child: RegisterFieldsSection(
+                  emailController: emailController,
+                  passwordController: passwordController,
+                ),
               ),
               const SizedBox(
                 height: 25,
@@ -46,8 +52,12 @@ class RegisterBody extends StatelessWidget {
                 height: MediaQuery.sizeOf(context).height * 0.08,
                 width: MediaQuery.sizeOf(context).width,
                 onPressed: () {
-                  registerController.userRegister(
-                      emailController.text, passwordController.text, context);
+                  if (formKey.currentState!.validate()) {
+                    registerController.userRegister(
+                        emailController.text, passwordController.text, context);
+                  } else {
+                    showSnackBar(context, 'Respect Authentication Rules');
+                  }
                 },
               ),
               const SizedBox(

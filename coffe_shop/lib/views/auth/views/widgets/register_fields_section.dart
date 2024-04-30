@@ -1,4 +1,5 @@
 import 'package:coffe_shop/views/auth/views/widgets/text_form_field.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class RegisterFieldsSection extends StatelessWidget {
@@ -22,6 +23,11 @@ class RegisterFieldsSection extends StatelessWidget {
           text: 'E-mail Addresse',
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
+          validator: (value) {
+            return value != null && !EmailValidator.validate(value)
+                ? "Enter a valid email"
+                : null;
+          },
         ),
         const SizedBox(
           height: 8,
@@ -30,6 +36,9 @@ class RegisterFieldsSection extends StatelessWidget {
           text: 'Password',
           controller: passwordController,
           isObsecure: true,
+          validator: (value) {
+            return value!.length < 6 ? "Enter at least 6 characters" : null;
+          },
         ),
         const SizedBox(
           height: 8,
