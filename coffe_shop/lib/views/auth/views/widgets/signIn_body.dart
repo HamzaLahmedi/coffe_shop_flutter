@@ -1,4 +1,5 @@
 import 'package:coffe_shop/core/widgets/custom_button.dart';
+import 'package:coffe_shop/views/auth/controllers/auth.dart';
 import 'package:coffe_shop/views/auth/controllers/signin.dart';
 import 'package:coffe_shop/views/auth/views/resgister_view.dart';
 import 'package:coffe_shop/views/auth/views/widgets/bottom_text.dart';
@@ -15,7 +16,7 @@ class SignInBody extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final SignInController signInController = SignInController();
+  final AuthController authController = AuthController();
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -49,7 +50,7 @@ class SignInBody extends StatelessWidget {
                 width: MediaQuery.sizeOf(context).width,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    signInController.userLogin(
+                    authController.userLogin(
                         emailController.text, passwordController.text, context);
                   }
                 },

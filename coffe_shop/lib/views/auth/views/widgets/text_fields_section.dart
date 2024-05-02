@@ -1,5 +1,6 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/views/auth/views/forget_password.dart';
 import 'package:coffe_shop/views/auth/views/widgets/text_form_field.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -65,11 +66,18 @@ class _TexFieldsSectionState extends State<TexFieldsSection> {
         ),
         Padding(
           padding: const EdgeInsets.only(right: 10),
-          child: Text(
-            'Forgot Password?',
-            style: AppStyles.styleBold20.copyWith(
-              color: AppColors.kPrimaryColor,
-              fontSize: 12,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const ForgetPassword();
+              }));
+            },
+            child: Text(
+              'Forgot Password?',
+              style: AppStyles.styleBold20.copyWith(
+                color: AppColors.kPrimaryColor,
+                fontSize: 12,
+              ),
             ),
           ),
         )
