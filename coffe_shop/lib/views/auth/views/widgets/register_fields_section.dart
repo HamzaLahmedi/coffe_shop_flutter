@@ -16,7 +16,7 @@ class RegisterFieldsSection extends StatefulWidget {
 }
 
 class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
-  bool isVisible = false;
+  bool isVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,7 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
         CustomTextFormField(
           text: 'Password',
           controller: widget.passwordController,
+          keyboardType: TextInputType.text,
           isObsecure: isVisible,
           validator: (value) {
             return value!.length < 6 ? "Enter at least 6 characters" : null;

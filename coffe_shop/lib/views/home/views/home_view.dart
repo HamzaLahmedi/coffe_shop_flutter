@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
       body: HomeViewBody(
         openDrawer: openDrawer,
       ),
-      drawer: const CustomDrawer(),
+      drawer:  CustomDrawer(),
     );
   }
 }

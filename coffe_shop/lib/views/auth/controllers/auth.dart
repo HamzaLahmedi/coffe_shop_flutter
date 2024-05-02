@@ -1,4 +1,3 @@
-import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/utils/snackbar.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/home_view.dart';
@@ -72,6 +71,21 @@ class AuthController {
       // print('Error: $e');
       if (!context.mounted) return;
       showSnackBar(context, 'An unexpected error occurred');
+    }
+  }
+
+  signOut(BuildContext context) {
+    try {
+      FirebaseAuth.instance.signOut();
+      print('signed out');
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+        return const SignInView();
+      }));
+
+      // Optionally, you can also navigate to a login screen or perform other actions after sign-out.
+    } catch (e) {
+      print('Error signing out: $e');
+      // Handle the error, show a message, or perform other actions.
     }
   }
 

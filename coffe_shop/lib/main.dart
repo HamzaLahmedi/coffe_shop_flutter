@@ -1,5 +1,6 @@
 import 'package:coffe_shop/core/utils/snackbar.dart';
 import 'package:coffe_shop/firebase_options.dart';
+import 'package:coffe_shop/provider/google_signin.dart';
 import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => LikedItems(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => GoogleSignInProvider(),
         ),
       ],
       child: MaterialApp(

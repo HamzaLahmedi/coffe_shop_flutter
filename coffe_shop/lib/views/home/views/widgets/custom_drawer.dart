@@ -1,36 +1,16 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/views/auth/controllers/auth.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/widgets/cstom_drawer_list_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({
+class CustomDrawer extends StatelessWidget {
+  CustomDrawer({
     super.key,
   });
-
-  @override
-  State<CustomDrawer> createState() => _CustomDrawerState();
-}
-
-class _CustomDrawerState extends State<CustomDrawer> {
-  signOut(BuildContext context) {
-    try {
-      FirebaseAuth.instance.signOut();
-      print('signed out');
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const SignInView();
-      }));
-
-      // Optionally, you can also navigate to a login screen or perform other actions after sign-out.
-    } catch (e) {
-      print('Error signing out: $e');
-      // Handle the error, show a message, or perform other actions.
-    }
-  }
-
+  final AuthController authController = AuthController();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -77,7 +57,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
               ),
               onPressed: () {
-                signOut(context);
+                authController.signOut(context);
               },
               child: const Text('sign out'),
             ),
