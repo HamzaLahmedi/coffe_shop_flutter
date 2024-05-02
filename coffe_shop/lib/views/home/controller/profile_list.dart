@@ -7,7 +7,7 @@ class ProfileList {
       title: 'Your Profile',
       iconPath: Assets.imagesProfileIcon,
     ),
-    ProfileModel(
+    /*ProfileModel(
       title: 'My Orders',
       iconPath: Assets.imagesOrdersIcon,
     ),
@@ -22,7 +22,7 @@ class ProfileList {
     ProfileModel(
       title: 'Invite Friend',
       iconPath: Assets.imagesInviteFreindIcon,
-    ),
+    ),*/
     /* ProfileModel(
       title: 'Logout',
       iconPath: Assets.imagesLogoutIcon,

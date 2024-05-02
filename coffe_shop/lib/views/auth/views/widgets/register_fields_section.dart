@@ -22,7 +22,29 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // const CustomTextFormField(text: 'Full Name'),
+        CustomTextFormField(
+          text: 'First Name',
+          validator: (value) {
+            return value!.length < 4 ? "Enter at least 6 characters" : null;
+          },
+          suffixIcon: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.person),
+          ),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        CustomTextFormField(
+          text: 'Last Name',
+          validator: (value) {
+            return value!.length < 4 ? "Enter at least 6 characters" : null;
+          },
+          suffixIcon: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.person),
+          ),
+        ),
         const SizedBox(
           height: 8,
         ),
@@ -35,6 +57,10 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
                 ? "Enter a valid email"
                 : null;
           },
+          suffixIcon: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.email),
+          ),
         ),
         const SizedBox(
           height: 8,
@@ -61,7 +87,6 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
         const SizedBox(
           height: 8,
         ),
-        // const CustomTextFormField(text: 'Confirm Password'),
       ],
     );
   }

@@ -50,7 +50,7 @@ class RegisterBody extends StatelessWidget {
               ),
               CustomButton(
                 title: 'Register',
-                height: MediaQuery.sizeOf(context).height * 0.08,
+                height: MediaQuery.sizeOf(context).height * 0.085,
                 width: MediaQuery.sizeOf(context).width,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {

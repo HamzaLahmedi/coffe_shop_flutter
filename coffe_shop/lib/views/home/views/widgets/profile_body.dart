@@ -14,11 +14,11 @@ class ProfileBody extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.sizeOf(context).width,
       height: MediaQuery.sizeOf(context).height,
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ProfileHeader(),
-          Text(
+          const ProfileHeader(),
+          const Text(
             'Shahzaib R.',
             style: AppStyles.styleSemiBold24,
           ),

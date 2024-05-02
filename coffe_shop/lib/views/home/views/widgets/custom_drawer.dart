@@ -11,6 +11,8 @@ class CustomDrawer extends StatelessWidget {
     super.key,
   });
   final AuthController authController = AuthController();
+  //this works if signed in with email
+  //final user=FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -32,6 +34,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Text(
+            //user.displayName!,
             'Shahzaib',
             style: AppStyles.styleSemiBold24.copyWith(
               fontSize: 22,
