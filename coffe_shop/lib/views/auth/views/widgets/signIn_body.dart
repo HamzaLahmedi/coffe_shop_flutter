@@ -1,20 +1,17 @@
 import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/views/auth/controllers/auth.dart';
-import 'package:coffe_shop/views/auth/controllers/signin.dart';
 import 'package:coffe_shop/views/auth/views/resgister_view.dart';
 import 'package:coffe_shop/views/auth/views/widgets/bottom_text.dart';
 import 'package:coffe_shop/views/auth/views/widgets/custom_social_icons.dart';
 import 'package:coffe_shop/views/auth/views/widgets/divider_section.dart';
 import 'package:coffe_shop/views/auth/views/widgets/signIn_header.dart';
 import 'package:coffe_shop/views/auth/views/widgets/text_fields_section.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SignInBody extends StatelessWidget {
   SignInBody({super.key});
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final AuthController authController = AuthController();
   @override

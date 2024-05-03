@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop/core/utils/snackbar.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/home_view.dart';
@@ -5,14 +6,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthController {
-  Future<void> userRegister(
-      String email, String password, BuildContext context) async {
+  Future<void> userRegister(String email, String password, String firstName,
+      String lastName, String age, BuildContext context) async {
     try {
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
+
+      users
+          .doc(credential.user!.uid)
+          .set({
+            'firstName': firstName,
+            'lastName': lastName,
+            'age': age,
+            'email': email,
+            //'password': password,
+          })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
       if (!context.mounted) return;
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const SignInView()));
@@ -81,8 +96,6 @@ class AuthController {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
         return const SignInView();
       }));
-
-      // Optionally, you can also navigate to a login screen or perform other actions after sign-out.
     } catch (e) {
       print('Error signing out: $e');
       // Handle the error, show a message, or perform other actions.

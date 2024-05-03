@@ -7,9 +7,14 @@ class RegisterFieldsSection extends StatefulWidget {
     super.key,
     this.emailController,
     this.passwordController,
+    this.firstNameController,
+    this.lastNameController, this.ageController,
   });
   final TextEditingController? emailController;
   final TextEditingController? passwordController;
+  final TextEditingController? firstNameController;
+  final TextEditingController? lastNameController;
+  final TextEditingController? ageController;
 
   @override
   State<RegisterFieldsSection> createState() => _RegisterFieldsSectionState();
@@ -23,6 +28,8 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
     return Column(
       children: [
         CustomTextFormField(
+          controller: widget.firstNameController,
+          keyboardType: TextInputType.text,
           text: 'First Name',
           validator: (value) {
             return value!.length < 4 ? "Enter at least 6 characters" : null;
@@ -36,10 +43,27 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
           height: 8,
         ),
         CustomTextFormField(
+          controller: widget.lastNameController,
+          keyboardType: TextInputType.text,
           text: 'Last Name',
           validator: (value) {
             return value!.length < 4 ? "Enter at least 6 characters" : null;
           },
+          suffixIcon: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.person),
+          ),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        CustomTextFormField(
+          controller: widget.ageController,
+          keyboardType: TextInputType.number,
+          text: 'Age',
+          /* validator: (value) {
+            return value!.length < 4 ? "Enter at least 6 characters" : null;
+          },*/
           suffixIcon: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.person),

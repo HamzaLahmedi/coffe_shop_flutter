@@ -11,7 +11,7 @@ class CustomIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // Dynamically set the height based on a percentage of the screen height
-      height: MediaQuery.of(context).size.height * 0.1,
+      height: MediaQuery.of(context).size.height * 0.07,
       width: MediaQuery.of(context).size.width *
           0.3, // Adjust the percentage as needed
       decoration: BoxDecoration(

@@ -7,21 +7,23 @@ import 'package:coffe_shop/views/auth/views/widgets/custom_social_icons.dart';
 import 'package:coffe_shop/views/auth/views/widgets/divider_section.dart';
 import 'package:coffe_shop/views/auth/views/widgets/register_fields_section.dart';
 import 'package:coffe_shop/views/auth/views/widgets/signIn_header.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RegisterBody extends StatelessWidget {
   RegisterBody({
     super.key,
   });
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
   final AuthController registerController = AuthController();
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SizedBox(
@@ -43,6 +45,9 @@ class RegisterBody extends StatelessWidget {
                 child: RegisterFieldsSection(
                   emailController: emailController,
                   passwordController: passwordController,
+                  firstNameController: firstNameController,
+                  lastNameController: lastNameController,
+                  ageController: ageController,
                 ),
               ),
               const SizedBox(
@@ -55,7 +60,12 @@ class RegisterBody extends StatelessWidget {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     registerController.userRegister(
-                        emailController.text, passwordController.text, context);
+                        emailController.text,
+                        passwordController.text,
+                        firstNameController.text,
+                        lastNameController.text,
+                        ageController.text,
+                        context);
                   } else {
                     showSnackBar(context, 'Respect Authentication Rules');
                   }
@@ -71,10 +81,8 @@ class RegisterBody extends StatelessWidget {
                 height: 25,
               ),
               const CustomSocialicons(),
-              const Expanded(
-                child: SizedBox(
-                  height: 20,
-                ),
+              const SizedBox(
+                height: 20,
               ),
               BottomText(
                 text: 'Login',
@@ -86,8 +94,10 @@ class RegisterBody extends StatelessWidget {
                           builder: (context) => const SignInView()));
                 },
               ),
-              const SizedBox(
-                height: 50,
+              const Expanded(
+                child: SizedBox(
+                  height: 50,
+                ),
               ),
             ],
           ),
