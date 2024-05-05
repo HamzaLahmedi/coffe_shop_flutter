@@ -1,11 +1,26 @@
 /*import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/provider/dialog_provider.dart';
+import 'package:coffe_shop/views/home/views/about_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart';
 
-Expanded getData(Map<String, dynamic> data, BuildContext context,
-      TextEditingController dialogController) {
+class GetAndUpdateData extends StatefulWidget {
+  const GetAndUpdateData({
+    super.key,
+    required this.data,
+    required this.textEditingController,
+  });
+
+  final Map<String, dynamic> data;
+  final TextEditingController textEditingController;
+
+  @override
+  State<GetAndUpdateData> createState() => _GetAndUpdateDataState();
+}
+
+class _GetAndUpdateDataState extends State<GetAndUpdateData> {
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: SingleChildScrollView(
         child: Column(
@@ -26,7 +41,7 @@ Expanded getData(Map<String, dynamic> data, BuildContext context,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "First Name: ${data['firstName']}",
+                      "First Name: ${widget.data['firstName']}",
                       style: const TextStyle(
                         fontSize: 17,
                       ),
@@ -35,9 +50,13 @@ Expanded getData(Map<String, dynamic> data, BuildContext context,
                         onPressed: () async {
                           await Provider.of<DialogProvider>(context,
                                   listen: false)
-                              .mydialog(
-                                  context, data, 'firstName', dialogController);
-                          
+                              .mydialog(context, widget.data, 'firstName',
+                                  widget.textEditingController);
+                          //not best practice but good for now
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AboutView()));
                         },
                         icon: const Icon(Icons.edit)),
                   ],
@@ -58,18 +77,18 @@ Expanded getData(Map<String, dynamic> data, BuildContext context,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Last Name: ${data['lastName']}",
+                      "Last Name: ${widget.data['lastName']}",
                       style: const TextStyle(
                         fontSize: 17,
                       ),
                     ),
                     IconButton(
                         onPressed: () async {
-                          await Provider.of<DialogProvider>(context,
+                          /* await Provider.of<DialogProvider>(context,
                                   listen: false)
-                              .mydialog(
-                                  context, data, 'lastName', dialogController);
-                          
+                              .mydialog(context, data, 'lastName',
+                                  dialogController);
+                          setState(() {});*/
                         },
                         icon: const Icon(Icons.edit)),
                   ],
@@ -90,18 +109,18 @@ Expanded getData(Map<String, dynamic> data, BuildContext context,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Email: ${data['email']}",
+                      "Email: ${widget.data['email']}",
                       style: const TextStyle(
                         fontSize: 17,
                       ),
                     ),
                     IconButton(
                         onPressed: () async {
-                          await Provider.of<DialogProvider>(context,
+                          /* await Provider.of<DialogProvider>(context,
                                   listen: false)
-                              .mydialog(
-                                  context, data, 'email', dialogController);
-                          
+                              .mydialog(context, data, 'email',
+                                  dialogController);
+                          setState(() {});*/
                         },
                         icon: const Icon(Icons.edit)),
                   ],
@@ -122,17 +141,18 @@ Expanded getData(Map<String, dynamic> data, BuildContext context,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Age: ${data['age']}",
+                      "Age: ${widget.data['age']}",
                       style: const TextStyle(
                         fontSize: 17,
                       ),
                     ),
                     IconButton(
                         onPressed: () async {
-                          await Provider.of<DialogProvider>(context,
+                          /* await Provider.of<DialogProvider>(context,
                                   listen: false)
-                              .mydialog(context, data, 'age', dialogController);
-                          
+                              .mydialog(context, data, 'age',
+                                  dialogController);
+                          setState(() {});*/
                         },
                         icon: const Icon(Icons.edit)),
                   ],
@@ -147,5 +167,4 @@ Expanded getData(Map<String, dynamic> data, BuildContext context,
       ),
     );
   }
-
-*/
+}*/

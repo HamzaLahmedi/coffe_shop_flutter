@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/core/widgets/get_update_profile_data.dart';
 import 'package:coffe_shop/provider/dialog_provider.dart';
-import 'package:coffe_shop/views/auth/views/widgets/text_form_field.dart';
 import 'package:coffe_shop/views/home/views/about_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:coffe_shop/views/home/views/profile_info_section.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +20,105 @@ class _GetDataFromFireStoreState extends State<GetDataFromFireStore> {
   Widget build(BuildContext context) {
     //CollectionReference users = FirebaseFirestore.instance.collection('users');
     final TextEditingController dialogController = TextEditingController();
-    //final credential = FirebaseAuth.instance.currentUser;
+    return FutureBuilder<DocumentSnapshot>(
+      future: FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.documentId)
+          .get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return const Text("Something went wrong");
+        }
+
+        if (snapshot.hasData && !snapshot.data!.exists) {
+          return const Text("Document does not exist");
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+              snapshot.data!.data() as Map<String, dynamic>;
+          return PersonalInfo(
+            data: data,
+            textEditingController: dialogController,
+          );
+          /*GetAndUpdateData(
+            data: data,
+            textEditingController: dialogController,
+          );*/
+        }
+
+        return const Text("loading");
+      },
+    );
+  }
+}
+
+class PersonalInfo extends StatelessWidget {
+  const PersonalInfo({
+    super.key,
+    required this.data,
+    required this.textEditingController,
+  });
+
+  final Map<String, dynamic> data;
+  final TextEditingController textEditingController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ProfileInfoSection(
+          title: 'First Name',
+          value: data['firstName'],
+          onTap: () {
+            Provider.of<DialogProvider>(context, listen: false)
+                .mydialog(context, data, 'firstName', textEditingController);
+          },
+        ),
+        const SizedBox(
+          height: 18,
+        ),
+        ProfileInfoSection(
+          title: 'Last Name',
+          value: data['lastName'],
+          onTap: () {
+            Provider.of<DialogProvider>(context, listen: false)
+                .mydialog(context, data, 'lastName', textEditingController);
+          },
+        ),
+        const SizedBox(
+          height: 18,
+        ),
+        ProfileInfoSection(
+          title: 'Email',
+          value: data['email'],
+          onTap: () {
+            Provider.of<DialogProvider>(context, listen: false)
+                .mydialog(context, data, 'email', textEditingController);
+          },
+        ),
+        const SizedBox(
+          height: 18,
+        ),
+        ProfileInfoSection(
+          title: 'Age',
+          value: data['age'],
+          onTap: () {
+            Provider.of<DialogProvider>(context, listen: false)
+                .mydialog(context, data, 'age', textEditingController);
+          },
+        ),
+      ],
+    );
+  }
+}
+
+//it updates on hot reload but works in navigation
+
+
+
+//final credential = FirebaseAuth.instance.currentUser;
 // Method for dialog and update the data works without provider
 /*mydialog(data,dynamic key) {
     return showDialog(
@@ -90,199 +187,3 @@ class _GetDataFromFireStoreState extends State<GetDataFromFireStore> {
           );
         });
   }*/
-
-    return FutureBuilder<DocumentSnapshot>(
-      future: FirebaseFirestore.instance
-          .collection('users')
-          .doc(widget.documentId)
-          .get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return const Text("Something went wrong");
-        }
-
-        if (snapshot.hasData && !snapshot.data!.exists) {
-          return const Text("Document does not exist");
-        }
-
-        if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, dynamic> data =
-              snapshot.data!.data() as Map<String, dynamic>;
-          return GetAndUpdateData(
-            data: data,
-            textEditingController: dialogController,
-          );
-        }
-
-        return const Text("loading");
-      },
-    );
-  }
-}
-
-//it updates on hot reload but works in navigation
-class GetAndUpdateData extends StatefulWidget {
-  const GetAndUpdateData({
-    super.key,
-    required this.data,
-    required this.textEditingController,
-  });
-
-  final Map<String, dynamic> data;
-  final TextEditingController textEditingController;
-
-  @override
-  State<GetAndUpdateData> createState() => _GetAndUpdateDataState();
-}
-
-class _GetAndUpdateDataState extends State<GetAndUpdateData> {
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 11,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3),
-                color: AppColors.kPrimaryColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "First Name: ${widget.data['firstName']}",
-                      style: const TextStyle(
-                        fontSize: 17,
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: () async {
-                          await Provider.of<DialogProvider>(context,
-                                  listen: false)
-                              .mydialog(context, widget.data, 'firstName',
-                                  widget.textEditingController);
-                          //not best practice but good for now
-                          /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AboutView()));*/
-                        },
-                        icon: const Icon(Icons.edit)),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 11,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3),
-                color: AppColors.kPrimaryColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Last Name: ${widget.data['lastName']}",
-                      style: const TextStyle(
-                        fontSize: 17,
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: () async {
-                          /* await Provider.of<DialogProvider>(context,
-                                  listen: false)
-                              .mydialog(context, data, 'lastName',
-                                  dialogController);
-                          setState(() {});*/
-                        },
-                        icon: const Icon(Icons.edit)),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 11,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3),
-                color: AppColors.kPrimaryColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Email: ${widget.data['email']}",
-                      style: const TextStyle(
-                        fontSize: 17,
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: () async {
-                          /* await Provider.of<DialogProvider>(context,
-                                  listen: false)
-                              .mydialog(context, data, 'email',
-                                  dialogController);
-                          setState(() {});*/
-                        },
-                        icon: const Icon(Icons.edit)),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 11,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3),
-                color: AppColors.kPrimaryColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Age: ${widget.data['age']}",
-                      style: const TextStyle(
-                        fontSize: 17,
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: () async {
-                          /* await Provider.of<DialogProvider>(context,
-                                  listen: false)
-                              .mydialog(context, data, 'age',
-                                  dialogController);
-                          setState(() {});*/
-                        },
-                        icon: const Icon(Icons.edit)),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 11,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
