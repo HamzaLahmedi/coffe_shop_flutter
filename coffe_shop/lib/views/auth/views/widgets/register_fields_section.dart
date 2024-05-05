@@ -32,7 +32,7 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
           keyboardType: TextInputType.text,
           text: 'First Name',
           validator: (value) {
-            return value!.length < 4 ? "Enter at least 6 characters" : null;
+            return value!.length < 4 ? "Enter at least 4 characters" : null;
           },
           suffixIcon: IconButton(
             onPressed: () {},
@@ -47,7 +47,7 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
           keyboardType: TextInputType.text,
           text: 'Last Name',
           validator: (value) {
-            return value!.length < 4 ? "Enter at least 6 characters" : null;
+            return value!.length < 4 ? "Enter at least 4 characters" : null;
           },
           suffixIcon: IconButton(
             onPressed: () {},

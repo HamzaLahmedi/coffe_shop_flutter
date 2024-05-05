@@ -1,38 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop/core/utils/app_images.dart';
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/widgets/get_data_from_fireStore.dart';
 import 'package:coffe_shop/views/auth/controllers/auth.dart';
+import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/profile_info_section.dart';
-import 'package:coffe_shop/views/home/views/widgets/info_from_firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AboutView extends StatelessWidget {
   AboutView({super.key});
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
   final AuthController authController = AuthController();
   final credintial = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          TextButton.icon(
-            onPressed: () {
-              authController.signOut(context);
-            },
-            label: const Text(
-              "logout",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),
-          )
+        actions: const [
+          Icon(
+            Icons.notifications,
+            color: Colors.white,
+          ),
         ],
         // backgroundColor: appbarGreen,
         title: const Text("Profile "),
@@ -131,7 +123,14 @@ class AboutView extends StatelessWidget {
                 height: 18,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  users.doc(credintial!.uid).delete();
+                  credintial!.delete();
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
+                    return const SignInView();
+                  }));
+                },
                 child: const Text(
                   'Delete Account',
                   style: TextStyle(

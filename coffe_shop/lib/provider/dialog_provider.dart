@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DialogProvider extends ChangeNotifier {
+  final formKey = GlobalKey<FormState>();
   Future<void> mydialog(BuildContext context, dynamic data, dynamic key,
       TextEditingController textEditingController) async {
     final credential = FirebaseAuth.instance.currentUser;
@@ -16,7 +17,7 @@ class DialogProvider extends ChangeNotifier {
           backgroundColor: Colors.black,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(11)),
-          child: Container(
+          child: SizedBox(
             height: 200,
             //MediaQuery.sizeOf(context).height / 2.5,
             child: Padding(
@@ -25,7 +26,8 @@ class DialogProvider extends ChangeNotifier {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Form(
-                    child: TextField(
+                    key: formKey,
+                    child: TextFormField(
                       controller: textEditingController,
                       decoration: InputDecoration(
                         hintText: '${data['$key']}',
