@@ -6,6 +6,7 @@ import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/widgets/get_data_from_fireStore.dart';
 import 'package:coffe_shop/views/auth/controllers/auth.dart';
+import 'package:coffe_shop/core/utils/upload_img.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/profile_info_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,8 +30,8 @@ class _AboutViewState extends State<AboutView> {
   final credintial = FirebaseAuth.instance.currentUser;
 
   File? imgPath;
-
-  uploadImage() async {
+  final UploadImg uploadImg = UploadImg();
+  /*uploadImage() async {
     final pickedImg = await ImagePicker().pickImage(source: ImageSource.camera);
     try {
       if (pickedImg != null) {
@@ -43,7 +44,7 @@ class _AboutViewState extends State<AboutView> {
     } catch (e) {
       print("Error => $e");
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +86,16 @@ class _AboutViewState extends State<AboutView> {
                         ),
                   Positioned(
                     bottom: -10,
-                    left: 100,
+                    left: 80,
                     child: IconButton(
                       onPressed: () async {
-                        await uploadImage();
+                        final newImgPath =
+                            await uploadImg.uploadImage(ImageSource.camera);
+                        if (newImgPath != null) {
+                          setState(() {
+                            imgPath = newImgPath;
+                          });
+                        }
                       },
                       icon: const Icon(Icons.add_a_photo),
                     ),

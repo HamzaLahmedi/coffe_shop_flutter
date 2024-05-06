@@ -6,6 +6,7 @@ import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/home_view.dart';
+import 'package:coffe_shop/views/splash_view/splash_view.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

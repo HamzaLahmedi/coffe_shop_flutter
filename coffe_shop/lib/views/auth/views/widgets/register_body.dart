@@ -3,21 +3,19 @@ import 'dart:io';
 import 'package:coffe_shop/core/utils/app_images.dart';
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/snackbar.dart';
+import 'package:coffe_shop/core/utils/upload_img.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/views/auth/controllers/auth.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/auth/views/widgets/bottom_text.dart';
-import 'package:coffe_shop/views/auth/views/widgets/custom_social_icons.dart';
-import 'package:coffe_shop/views/auth/views/widgets/divider_section.dart';
 import 'package:coffe_shop/views/auth/views/widgets/register_fields_section.dart';
-import 'package:coffe_shop/views/auth/views/widgets/signIn_header.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' show basename;
 
 class RegisterBody extends StatefulWidget {
-  RegisterBody({
+  const RegisterBody({
     super.key,
   });
 
@@ -40,6 +38,8 @@ class _RegisterBodyState extends State<RegisterBody> {
 
   final formKey = GlobalKey<FormState>();
   File? imgPath;
+  String? imgName;
+  final UploadImg uploadImg = UploadImg();
   showModal() {
     return showBottomSheet(
         context: context,
@@ -51,8 +51,17 @@ class _RegisterBodyState extends State<RegisterBody> {
               children: [
                 GestureDetector(
                   onTap: () async {
-                    await uploadImage(ImageSource.camera);
-                    Navigator.pop(context);
+                    final newImgPath =
+                        await uploadImg.uploadImage(ImageSource.camera);
+
+                    if (newImgPath != null) {
+                      setState(() {
+                        imgPath = newImgPath;
+
+                        imgName = basename(newImgPath.path);
+                      });
+                      Navigator.pop(context);
+                    }
                   },
                   child: const Row(
                     children: [
@@ -73,8 +82,16 @@ class _RegisterBodyState extends State<RegisterBody> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    await uploadImage(ImageSource.gallery);
-                    Navigator.pop(context);
+                    final newImgPath =
+                        await uploadImg.uploadImage(ImageSource.gallery);
+                    if (newImgPath != null) {
+                      setState(() {
+                        imgPath = newImgPath;
+
+                        imgName = basename(newImgPath.path);
+                      });
+                      Navigator.pop(context);
+                    }
                   },
                   child: const Row(
                     children: [
@@ -96,7 +113,7 @@ class _RegisterBodyState extends State<RegisterBody> {
         });
   }
 
-  uploadImage(ImageSource source) async {
+  /*uploadImage(ImageSource source) async {
     final pickedImg = await ImagePicker().pickImage(source: source);
     try {
       if (pickedImg != null) {
@@ -109,7 +126,7 @@ class _RegisterBodyState extends State<RegisterBody> {
     } catch (e) {
       print("Error => $e");
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -187,15 +204,20 @@ class _RegisterBodyState extends State<RegisterBody> {
                 title: 'Register',
                 height: MediaQuery.sizeOf(context).height * 0.085,
                 width: MediaQuery.sizeOf(context).width,
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
-                    registerController.userRegister(
-                        emailController.text,
-                        passwordController.text,
-                        firstNameController.text,
-                        lastNameController.text,
-                        ageController.text,
-                        context);
+                    await registerController.userRegister(
+                      emailController.text,
+                      passwordController.text,
+                      firstNameController.text,
+                      lastNameController.text,
+                      ageController.text,
+                      imgPath!,
+                      imgName!,
+                      context,
+                    );
+                    // Now, the registration is complete, you can upload the image
+                    
                   } else {
                     showSnackBar(context, 'Respect Authentication Rules');
                   }
