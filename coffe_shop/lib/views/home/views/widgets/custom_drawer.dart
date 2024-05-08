@@ -1,7 +1,7 @@
-import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
+import 'package:coffe_shop/core/widgets/get_img_from_fire_store.dart';
+import 'package:coffe_shop/core/widgets/get_name_from_fire_store.dart';
 import 'package:coffe_shop/views/auth/controllers/auth.dart';
-import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/widgets/cstom_drawer_list_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,8 @@ class CustomDrawer extends StatelessWidget {
   });
   final AuthController authController = AuthController();
   //this works if signed in with email
-  //final user=FirebaseAuth.instance.currentUser;
+  final user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -22,24 +23,8 @@ class CustomDrawer extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          CircleAvatar(
-            radius: 30,
-            // Set the background to the SVG image
-            backgroundColor: AppColors.kBackgroundColor,
-            child: Image.asset(
-              'assets/images/profile1.png',
-              //height: 30 * 2,
-              // width: 30 * 2,
-              //fit: BoxFit.contain,
-            ),
-          ),
-          Text(
-            //user.displayName!,
-            'Shahzaib',
-            style: AppStyles.styleSemiBold24.copyWith(
-              fontSize: 22,
-            ),
-          ),
+          const GetImgFromFireStore(),
+          const GetFirstNameFromFireStore(),
           const SizedBox(
             height: 40,
           ),

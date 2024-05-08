@@ -5,6 +5,7 @@ import 'package:coffe_shop/core/utils/app_images.dart';
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/widgets/get_data_from_fireStore.dart';
+import 'package:coffe_shop/core/widgets/get_img_from_fire_store.dart';
 import 'package:coffe_shop/views/auth/controllers/auth.dart';
 import 'package:coffe_shop/core/utils/upload_img.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
@@ -66,24 +67,7 @@ class _AboutViewState extends State<AboutView> {
             children: [
               Stack(
                 children: [
-                  imgPath == null
-                      ? const CircleAvatar(
-                          radius: 60,
-                          // Set the background to the SVG image
-                          //backgroundColor: AppColors.kBackgroundColor
-                          backgroundImage:
-                              AssetImage('assets/images/avatar.png'),
-                        )
-                      : ClipOval(
-                          child: imgPath == null
-                              ? Image.asset(Assets.imagesProfile1)
-                              : Image.file(
-                                  imgPath!,
-                                  width: 145,
-                                  height: 145,
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
+                 const GetImgFromFireStore(),
                   Positioned(
                     bottom: -10,
                     left: 80,

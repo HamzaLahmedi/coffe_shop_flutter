@@ -2,13 +2,11 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop/core/utils/snackbar.dart';
-import 'package:coffe_shop/core/utils/upload_img.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/home/views/home_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class AuthController {
   Future<void> userRegister(
@@ -17,7 +15,7 @@ class AuthController {
       String firstName,
       String lastName,
       String age,
-     File imgPath,
+      File imgPath,
       String imgName,
       BuildContext context) async {
     try {
@@ -28,10 +26,11 @@ class AuthController {
       );
 
       //upload img to store
-                      final storageRef = FirebaseStorage.instance.ref(imgName);
-                      await storageRef.putFile(imgPath!);
-                   
-                      
+      final storageRef = FirebaseStorage.instance.ref('users-imgs/$imgName');
+      await storageRef.putFile(imgPath);
+
+      // Get img url
+      String url = await storageRef.getDownloadURL();
 
       CollectionReference users =
           FirebaseFirestore.instance.collection('users');
@@ -43,6 +42,7 @@ class AuthController {
             'lastName': lastName,
             'age': age,
             'email': email,
+            'imgUrl': url,
             //'password': password,
           })
           .then((value) => print("User Added"))

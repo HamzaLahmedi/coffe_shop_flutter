@@ -21,7 +21,6 @@ class HomeViewBody extends StatelessWidget {
           ),
           HomeHeader(
             openDrawer: openDrawer,
-            title: 'Shahzaib',
             subtitle: 'Good Morning!',
           ),
           const SizedBox(

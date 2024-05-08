@@ -1,6 +1,7 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/widgets/custom_shopping_icon.dart';
+import 'package:coffe_shop/core/widgets/get_name_from_fire_store.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,11 +12,11 @@ class HomeHeader extends StatelessWidget {
   const HomeHeader({
     super.key,
     required this.openDrawer,
-    required this.title,
+    
     this.subtitle,
   });
   final VoidCallback openDrawer;
-  final String title;
+  
   final String? subtitle;
 
   @override
@@ -51,12 +52,7 @@ class HomeHeader extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      title,
-                      style: AppStyles.styleSemiBold24.copyWith(
-                        fontSize: 22,
-                      ),
-                    ),
+                     const GetFirstNameFromFireStore(),
                     Text(
                       subtitle ?? '',
                       style: const TextStyle(

@@ -205,7 +205,10 @@ class _RegisterBodyState extends State<RegisterBody> {
                 height: MediaQuery.sizeOf(context).height * 0.085,
                 width: MediaQuery.sizeOf(context).width,
                 onPressed: () async {
-                  if (formKey.currentState!.validate()) {
+                  // Validate the form also image need to be non null
+                  if (formKey.currentState!.validate() &&
+                      imgPath != null &&
+                      imgName != null) {
                     await registerController.userRegister(
                       emailController.text,
                       passwordController.text,
@@ -217,9 +220,8 @@ class _RegisterBodyState extends State<RegisterBody> {
                       context,
                     );
                     // Now, the registration is complete, you can upload the image
-                    
                   } else {
-                    showSnackBar(context, 'Respect Authentication Rules');
+                    showSnackBar(context, ' All fields are required');
                   }
                 },
               ),

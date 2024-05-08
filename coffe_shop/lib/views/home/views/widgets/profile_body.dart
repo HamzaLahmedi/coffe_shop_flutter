@@ -1,4 +1,6 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
+import 'package:coffe_shop/core/widgets/get_img_from_fire_store.dart';
+import 'package:coffe_shop/core/widgets/get_name_from_fire_store.dart';
 import 'package:coffe_shop/views/home/views/widgets/custom_profile_list_view.dart';
 import 'package:coffe_shop/views/home/views/widgets/profile_header.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +19,8 @@ class ProfileBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const ProfileHeader(),
-          const Text(
-            'Shahzaib R.',
-            style: AppStyles.styleSemiBold24,
-          ),
+          const GetImgFromFireStore(),
+          const GetFirstNameFromFireStore(),
           CustomProfileListView()
         ],
       ),

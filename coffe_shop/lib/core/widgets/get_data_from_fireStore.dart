@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coffe_shop/core/widgets/get_update_profile_data.dart';
 import 'package:coffe_shop/provider/dialog_provider.dart';
-import 'package:coffe_shop/views/home/views/about_view.dart';
 import 'package:coffe_shop/views/home/views/profile_info_section.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
