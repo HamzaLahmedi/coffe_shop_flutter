@@ -7,10 +7,10 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return const   Scaffold(
       backgroundColor: Colors.transparent,
       body: DecoratedBox(
-        decoration:const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
               'assets/images/Login_signup_bgg.png',

@@ -9,7 +9,6 @@ import 'package:coffe_shop/views/auth/controllers/auth.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/auth/views/widgets/bottom_text.dart';
 import 'package:coffe_shop/views/auth/views/widgets/register_fields_section.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' show basename;
