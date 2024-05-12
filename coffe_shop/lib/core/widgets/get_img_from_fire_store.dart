@@ -15,7 +15,8 @@ class GetImgFromFireStore extends StatefulWidget {
 class _GetImgFromFireStoreState extends State<GetImgFromFireStore> {
   @override
   Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    //CollectionReference users = 
+    FirebaseFirestore.instance.collection('users');
     final credential = FirebaseAuth.instance.currentUser;
 
     return FutureBuilder<DocumentSnapshot>(

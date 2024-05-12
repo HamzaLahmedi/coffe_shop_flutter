@@ -30,7 +30,7 @@ class HomeViewBody extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          CustomGridView()
+        const  CustomGridView()
         ],
       ),
     );

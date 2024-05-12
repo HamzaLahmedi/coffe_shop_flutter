@@ -1,6 +1,4 @@
-import 'package:coffe_shop/models/onBoarding_model.dart';
-import 'package:coffe_shop/views/onBoarding_view/controller/onBoarding_list.dart';
-import 'package:coffe_shop/views/onBoarding_view/views/widgets/onBoarding_header.dart';
+import 'package:coffe_shop/views/onBoarding_view/controller/onboarding_list.dart';
 import 'package:coffe_shop/views/onBoarding_view/views/widgets/onboarding_section.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +16,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
   @override
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: PageView.builder(
         itemCount: controller.onBoardingList.length,

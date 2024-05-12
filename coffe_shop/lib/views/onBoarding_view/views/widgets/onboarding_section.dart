@@ -1,6 +1,6 @@
-import 'package:coffe_shop/views/onBoarding_view/controller/onBoarding_list.dart';
-import 'package:coffe_shop/views/onBoarding_view/views/widgets/onBoarding_header.dart';
-import 'package:coffe_shop/views/onBoarding_view/views/widgets/onBoarding_sction_body.dart';
+import 'package:coffe_shop/views/onBoarding_view/controller/onboarding_list.dart';
+import 'package:coffe_shop/views/onBoarding_view/views/widgets/onboarding_header.dart';
+import 'package:coffe_shop/views/onBoarding_view/views/widgets/onboarding_sction_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

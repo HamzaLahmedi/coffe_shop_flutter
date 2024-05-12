@@ -1,4 +1,4 @@
-import 'package:coffe_shop/views/onBoarding_view/views/widgets/onBoarding_body.dart';
+import 'package:coffe_shop/views/onboarding_view/views/widgets/onboarding_body.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingView extends StatelessWidget {

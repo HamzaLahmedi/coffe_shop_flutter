@@ -1,7 +1,5 @@
 import 'package:coffe_shop/provider/liked_items.dart';
 import 'package:coffe_shop/views/home/controller/menu_list.dart';
-import 'package:coffe_shop/views/home/views/home_view.dart';
-import 'package:coffe_shop/views/home/views/liked_view.dart';
 import 'package:coffe_shop/views/home/views/widgets/custom_grid_view_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

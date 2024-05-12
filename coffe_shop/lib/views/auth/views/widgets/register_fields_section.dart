@@ -8,7 +8,8 @@ class RegisterFieldsSection extends StatefulWidget {
     this.emailController,
     this.passwordController,
     this.firstNameController,
-    this.lastNameController, this.ageController,
+    this.lastNameController,
+    this.ageController,
   });
   final TextEditingController? emailController;
   final TextEditingController? passwordController;
@@ -40,7 +41,7 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
           ),
         ),
         const SizedBox(
-          height: 8,
+          height: 10,
         ),
         CustomTextFormField(
           controller: widget.lastNameController,
@@ -55,7 +56,7 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
           ),
         ),
         const SizedBox(
-          height: 8,
+          height: 10,
         ),
         CustomTextFormField(
           controller: widget.ageController,
@@ -70,7 +71,7 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
           ),
         ),
         const SizedBox(
-          height: 8,
+          height: 10,
         ),
         CustomTextFormField(
           text: 'E-mail Addresse',
@@ -87,7 +88,7 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
           ),
         ),
         const SizedBox(
-          height: 8,
+          height: 10,
         ),
         CustomTextFormField(
           text: 'Password',
@@ -109,7 +110,7 @@ class _RegisterFieldsSectionState extends State<RegisterFieldsSection> {
           ),
         ),
         const SizedBox(
-          height: 8,
+          height: 10,
         ),
       ],
     );

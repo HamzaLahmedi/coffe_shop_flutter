@@ -28,7 +28,7 @@ class ShopViewBody extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ShopFooter(),
+           const ShopFooter(),
             const SizedBox(
               height: 15,
             ),

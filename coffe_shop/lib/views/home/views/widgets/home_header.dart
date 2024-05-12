@@ -1,11 +1,8 @@
-import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/widgets/custom_shopping_icon.dart';
 import 'package:coffe_shop/core/widgets/get_name_from_fire_store.dart';
 import 'package:coffe_shop/provider/shopping_cart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class HomeHeader extends StatelessWidget {

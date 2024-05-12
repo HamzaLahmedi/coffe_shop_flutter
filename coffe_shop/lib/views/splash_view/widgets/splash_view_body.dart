@@ -1,8 +1,7 @@
 import 'package:coffe_shop/core/utils/app_images.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
-import 'package:coffe_shop/views/onBoarding_view/views/onBoarding_view.dart';
+import 'package:coffe_shop/views/onBoarding_view/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashViewBody extends StatelessWidget {

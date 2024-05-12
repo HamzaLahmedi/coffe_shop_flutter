@@ -3,9 +3,7 @@ import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/views/auth/views/resgister_view.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
 import 'package:coffe_shop/views/onBoarding_view/views/widgets/custom_transparant_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class OnBoardingSectionBody extends StatelessWidget {
   const OnBoardingSectionBody(

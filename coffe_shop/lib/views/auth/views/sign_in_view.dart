@@ -1,7 +1,5 @@
-import 'package:coffe_shop/views/auth/views/widgets/signIn_body.dart';
-import 'package:coffe_shop/views/auth/views/widgets/text_form_field.dart';
+import 'package:coffe_shop/views/auth/views/widgets/signin_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});

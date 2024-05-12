@@ -1,7 +1,7 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
-import 'package:coffe_shop/views/onBoarding_view/controller/onBoarding_list.dart';
+import 'package:coffe_shop/views/onBoarding_view/controller/onboarding_list.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

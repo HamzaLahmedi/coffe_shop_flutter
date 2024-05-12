@@ -7,10 +7,8 @@ class UploadImg {
     if (pickedImg != null) {
       
       
-      print(pickedImg.name);
       return File(pickedImg.path);
     } else {
-      print("No image selected");
       return null;
     }
   }

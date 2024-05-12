@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/core/utils/upload_img.dart';
-import 'package:coffe_shop/core/widgets/get_data_from_fireStore.dart';
+import 'package:coffe_shop/core/widgets/get_data_from_fire_store.dart';
 import 'package:coffe_shop/core/widgets/get_img_from_fire_store.dart';
 import 'package:coffe_shop/views/auth/controllers/auth.dart';
 import 'package:coffe_shop/views/auth/views/sign_in_view.dart';
@@ -60,16 +60,15 @@ class _AboutViewBodyState extends State<AboutViewBody> {
                       });
                       final storageRef =
                           FirebaseStorage.instance.ref('users-imgs/$imgName');
-                      print(storageRef.fullPath);
+
                       await storageRef.putFile(imgPath!);
                       // Get img url
                       String url = await storageRef.getDownloadURL();
-                      print('*****************');
-                      print(url);
+
                       users.doc(credintial!.uid).update({
                         "imgUrl": url,
                       });
-
+                      if (!context.mounted) return;
                       Navigator.pop(context);
                       Navigator.push(
                           context,
@@ -106,16 +105,15 @@ class _AboutViewBodyState extends State<AboutViewBody> {
                       });
                       final storageRef =
                           FirebaseStorage.instance.ref('users-imgs/$imgName');
-                      print(storageRef.fullPath);
+
                       await storageRef.putFile(imgPath!);
                       // Get img url
                       String url = await storageRef.getDownloadURL();
-                      print('*****************');
-                      print(url);
+
                       users.doc(credintial!.uid).update({
                         "imgUrl": url,
                       });
-
+                      if (!context.mounted) return;
                       Navigator.pop(context);
                       Navigator.push(
                           context,

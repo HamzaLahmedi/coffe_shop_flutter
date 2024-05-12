@@ -33,6 +33,6 @@ class CustomTransparentButton extends StatelessWidget {
         child: Text(title),
       ),
     );
-    ;
+    
   }
 }

@@ -1,7 +1,6 @@
 import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/views/auth/controllers/auth.dart';
-import 'package:coffe_shop/views/auth/views/widgets/signIn_header.dart';
 import 'package:coffe_shop/views/auth/views/widgets/text_form_field.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +12,7 @@ class ForgetPasswordBody extends StatelessWidget {
   ForgetPasswordBody({super.key});
 
   final TextEditingController emailController = TextEditingController();
-  AuthController authController = AuthController();
+ final AuthController authController = AuthController();
   @override
   Widget build(BuildContext context) {
     return Padding(

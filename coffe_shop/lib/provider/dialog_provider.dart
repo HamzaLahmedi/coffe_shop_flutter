@@ -48,7 +48,7 @@ class DialogProvider extends ChangeNotifier {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => AboutView(),
+                                builder: (context) => const AboutView(),
                               ));
 
                           notifyListeners();

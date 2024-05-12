@@ -1,4 +1,3 @@
-import 'package:coffe_shop/core/utils/app_styles.dart';
 import 'package:coffe_shop/core/utils/colors.dart';
 import 'package:coffe_shop/views/home/views/widgets/custom_drawer.dart';
 import 'package:coffe_shop/views/home/views/widgets/home_view_body.dart';
@@ -12,7 +11,7 @@ class HomeView extends StatelessWidget {
 
   openDrawer() {
     scaffoldKey.currentState?.openDrawer();
-    print('ok');
+    
   }
 
   @override

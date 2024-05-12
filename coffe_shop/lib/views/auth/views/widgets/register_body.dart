@@ -59,6 +59,7 @@ class _RegisterBodyState extends State<RegisterBody> {
 
                         imgName = basename(newImgPath.path);
                       });
+                      if (!context.mounted) return;
                       Navigator.pop(context);
                     }
                   },
@@ -89,6 +90,7 @@ class _RegisterBodyState extends State<RegisterBody> {
 
                         imgName = basename(newImgPath.path);
                       });
+                      if (!context.mounted) return;
                       Navigator.pop(context);
                     }
                   },
@@ -133,126 +135,121 @@ class _RegisterBodyState extends State<RegisterBody> {
       physics: const AlwaysScrollableScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: SizedBox(
-          height: MediaQuery.sizeOf(context).height,
-          width: MediaQuery.sizeOf(context).width,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 60,
-              ),
-              const Text(
-                'Register your Account',
-                style: AppStyles.styleSemiBold24,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Stack(
-                children: [
-                  imgPath == null
-                      ? const CircleAvatar(
-                          radius: 60,
-                          // Set the background to the SVG image
-                          backgroundColor: Colors.black,
-                          backgroundImage:
-                              AssetImage('assets/images/avatar.png'),
-                        )
-                      : ClipOval(
-                          child: imgPath == null
-                              ? Image.asset(Assets.imagesProfile1)
-                              : Image.file(
-                                  imgPath!,
-                                  width: 145,
-                                  height: 145,
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
-                  Positioned(
-                    bottom: -10,
-                    left: 80,
-                    child: IconButton(
-                      onPressed: () {
-                        showModal();
-                      },
-                      icon: const Icon(Icons.add_a_photo),
+        child: SafeArea(
+          child: SizedBox(
+            height: MediaQuery.sizeOf(context).height,
+            width: MediaQuery.sizeOf(context).width,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                const Text(
+                  'Register your Account',
+                  style: AppStyles.styleSemiBold24,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Stack(
+                  children: [
+                    imgPath == null
+                        ? const CircleAvatar(
+                            radius: 60,
+                            // Set the background to the SVG image
+                            backgroundColor: Colors.black,
+                            backgroundImage:
+                                AssetImage('assets/images/avatar.png'),
+                          )
+                        : ClipOval(
+                            child: imgPath == null
+                                ? Image.asset(Assets.imagesProfile1)
+                                : Image.file(
+                                    imgPath!,
+                                    width: 145,
+                                    height: 145,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                    Positioned(
+                      bottom: -10,
+                      left: 80,
+                      child: IconButton(
+                        onPressed: () {
+                          showModal();
+                        },
+                        icon: const Icon(Icons.add_a_photo),
+                      ),
                     ),
+                  ],
+                ),
+                /*const SignInHeader(
+                  title: 'Register your Account',
+                ),*/
+                const SizedBox(
+                  height: 20,
+                ),
+                Form(
+                  key: formKey,
+                  child: RegisterFieldsSection(
+                    emailController: emailController,
+                    passwordController: passwordController,
+                    firstNameController: firstNameController,
+                    lastNameController: lastNameController,
+                    ageController: ageController,
                   ),
-                ],
-              ),
-              /*const SignInHeader(
-                title: 'Register your Account',
-              ),*/
-              const SizedBox(
-                height: 20,
-              ),
-              Form(
-                key: formKey,
-                child: RegisterFieldsSection(
-                  emailController: emailController,
-                  passwordController: passwordController,
-                  firstNameController: firstNameController,
-                  lastNameController: lastNameController,
-                  ageController: ageController,
                 ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              CustomButton(
-                title: 'Register',
-                height: MediaQuery.sizeOf(context).height * 0.085,
-                width: MediaQuery.sizeOf(context).width,
-                onPressed: () async {
-                  // Validate the form also image need to be non null
-                  if (formKey.currentState!.validate() &&
-                      imgPath != null &&
-                      imgName != null) {
-                    await registerController.userRegister(
-                      emailController.text,
-                      passwordController.text,
-                      firstNameController.text,
-                      lastNameController.text,
-                      ageController.text,
-                      imgPath!,
-                      imgName!,
-                      context,
-                    );
-                    // Now, the registration is complete, you can upload the image
-                  } else {
-                    showSnackBar(context, ' All fields are required');
-                  }
-                },
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              /*const DividerSection(
-                text: 'Or Register with',
-              ),
-              const SizedBox(
-                height: 25,
-              ),*/
-              //const CustomSocialicons(),
-              const SizedBox(
-                height: 20,
-              ),
-              BottomText(
-                text: 'Login',
-                onPressed: () {
-                  // Navigator.pushNamed(context, '/register');
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignInView()));
-                },
-              ),
-              const Expanded(
-                child: SizedBox(
-                  height: 50,
+                const SizedBox(
+                  height: 15,
                 ),
-              ),
-            ],
+                CustomButton(
+                  title: 'Register',
+                  height: MediaQuery.sizeOf(context).height * 0.085,
+                  width: MediaQuery.sizeOf(context).width,
+                  onPressed: () async {
+                    // Validate the form also image need to be non null
+                    if (formKey.currentState!.validate() &&
+                        imgPath != null &&
+                        imgName != null) {
+                      await registerController.userRegister(
+                        emailController.text,
+                        passwordController.text,
+                        firstNameController.text,
+                        lastNameController.text,
+                        ageController.text,
+                        imgPath!,
+                        imgName!,
+                        context,
+                      );
+                      // Now, the registration is complete, you can upload the image
+                    } else {
+                      showSnackBar(context, ' All fields are required');
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                /*const DividerSection(
+                  text: 'Or Register with',
+                ),
+                const SizedBox(
+                  height: 25,
+                ),*/
+                //const CustomSocialicons(),
+
+                BottomText(
+                  text: 'Login',
+                  onPressed: () {
+                    // Navigator.pushNamed(context, '/register');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignInView()));
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

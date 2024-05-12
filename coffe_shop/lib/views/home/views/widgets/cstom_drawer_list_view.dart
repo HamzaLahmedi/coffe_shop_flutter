@@ -12,9 +12,9 @@ class CustomDrawerListView extends StatelessWidget {
   });
   final List<Widget> drawerWidget = [
     HomeView(),
-    ShopView(),
-    LikedView(),
-    ProfileView(),
+    const ShopView(),
+    const LikedView(),
+    const ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,8 +34,7 @@ class CustomDrawerListView extends StatelessWidget {
                     context, DrawerList.drawerList[index].route);*/
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => drawerWidget[index]),
+                  MaterialPageRoute(builder: (context) => drawerWidget[index]),
                 );
               },
               child: CustomDrawerItem(

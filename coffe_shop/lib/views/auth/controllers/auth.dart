@@ -45,8 +45,8 @@ class AuthController {
             'imgUrl': url,
             //'password': password,
           })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
+          .then((value) => showSnackBar(context, 'User Added'))
+          .catchError((error) => showSnackBar(context, 'Failed to add user: $error'));
       if (!context.mounted) return;
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const SignInView()));
@@ -111,12 +111,12 @@ class AuthController {
   signOut(BuildContext context) {
     try {
       FirebaseAuth.instance.signOut();
-      print('signed out');
+     showSnackBar(context, 'Signed out');
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
         return const SignInView();
       }));
     } catch (e) {
-      print('Error signing out: $e');
+      showSnackBar(context, 'Error signing out: $e');
       // Handle the error, show a message, or perform other actions.
     }
   }
