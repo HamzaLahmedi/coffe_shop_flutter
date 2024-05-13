@@ -68,9 +68,11 @@ class _AboutViewBodyState extends State<AboutViewBody> {
                       users.doc(credintial!.uid).update({
                         "imgUrl": url,
                       });
+
                       if (!context.mounted) return;
                       Navigator.pop(context);
-                      Navigator.push(
+
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const AboutView()));
@@ -113,9 +115,11 @@ class _AboutViewBodyState extends State<AboutViewBody> {
                       users.doc(credintial!.uid).update({
                         "imgUrl": url,
                       });
+
                       if (!context.mounted) return;
                       Navigator.pop(context);
-                      Navigator.push(
+
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const AboutView()));
